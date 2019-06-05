@@ -13,7 +13,7 @@ class Tag():
 
     def add_tag(self):
         url = 'http://10.1.1.89:9999/auditcenter/api/v1/collect/addTag'
-        params = {"tag": "收藏分类6"}
+        params = {"tag": "收藏分类7"}
         headers = {'Content-Type': "application/json"}
         res = self.session.post(url, data=json.dumps(params), headers=headers).json()
         print(res)
