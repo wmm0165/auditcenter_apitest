@@ -1,0 +1,8 @@
+<root>
+  <base>
+    <hospital_code><![CDATA[H0003]]></hospital_code>
+    <event_no><![CDATA[eno_1]]></event_no>
+    <patient_id><![CDATA[pid_1]]></patient_id>
+    <source><![CDATA[住院]]></source>
+  </base>
+</root>

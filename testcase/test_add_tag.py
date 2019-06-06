@@ -1,8 +1,9 @@
-import unittest
-import requests
+# -*- coding: utf-8 -*-
+# @Time    : 2019/6/6 13:21
+# @Author  : wangmengmeng
 import json
-import sys
-import os
+import unittest
+
 from common.login import Login
 
 
@@ -18,7 +19,7 @@ class TestAddTag(unittest.TestCase):
         params = {"tag": "收藏分类15"}
         headers = {'Content-Type': "application/json"}
         res = self.session.post(url, data=json.dumps(params), headers=headers).json()
-        self.assertEquals (res['code'], '200')
+        self.assertEquals(res['code'], '200')
 
 
 if __name__ == '__main__':
