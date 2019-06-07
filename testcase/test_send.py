@@ -7,7 +7,7 @@ from common.login import Login
 xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'config','body_xml.txt')
 print(xml_path)
 class TestSend(unittest.TestCase):
-    @classmethod
+
     def setUp(self):
         login = Login()
         self.session = login.get_session()
