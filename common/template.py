@@ -5,6 +5,7 @@ import requests
 import json
 from config.read_config import ReadConfig
 import hashlib
+import os
 
 
 class Template():
@@ -19,23 +20,27 @@ class Template():
         params = {"name": username, "password": password}
         headers = {'Content-Type': "application/json"}
         self.session = requests.session()
-        # self.session.post(url, data=json.dumps(params), headers=headers)\
-        res = self.session.post(url, data=json.dumps(params), headers=headers).json()
-        print(res)
+        # self.session.post(url, data=json.dumps(params), headers=headers)
+        res = self.session.post(url, data=json.dumps(params), headers=headers).json()  # 登录用户中心
+        start_sf_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/startAuditWork' # 获取开始审方url
+        self.session.get(url=start_sf_url)  # 开始审方
 
     # def get_session(self):
     #     return self.session
 
-    def post_json(self, url, para, headers):
+    def post_json(self, url, para):
         data = para
         data = json.dumps(data)
-        return self.session.post(url, data=data, headers=headers)
+        headers = {"Content-Type": "application/json"}
+        return self.session.post(url, data=data, headers=headers).json()
 
-    def request_get(self, url, headers):
+    def get(self, url):
         return self.session.get(url).json()
 
-    def send_data(self, xml_path, url, **change):
+    def send_data(self, xml_name, **change):
         # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
+        xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'config', xml_name)
+        print(xml_path)
         send_data_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/auditcenter'
         headers = {"Content-Type": "text/plain"}
         with open(xml_path, encoding="utf-8") as fp:
@@ -44,5 +49,13 @@ class Template():
         for k in change:
             ss = ss.replace(k, change[k])
         print(ss)
-        res = self.session.post(url=url, data=ss.encode("utf-8"), headers=headers).json()
-        print(res)
+        return self.session.post(url=send_data_url, data=ss.encode("utf-8"), headers=headers).json()
+
+
+if __name__ == '__main__':
+    t = Template()
+    change = {"{{eno}}": "a", "{{pid}}": "b", "{{ts}}": "c",
+              "{{gp}}": "d",
+              "{{d2}}": "e"}
+    xml_name = 'body_xml.txt'
+    t.send_data(xml_name, **change)
