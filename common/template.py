@@ -8,7 +8,7 @@ import hashlib
 import os
 
 
-class Template():
+class Template:
     def __init__(self):
         self.conf = ReadConfig()
         url = self.conf.get('login', 'address') + '/syscenter/api/v1/currentUser'
@@ -22,7 +22,7 @@ class Template():
         self.session = requests.session()
         # self.session.post(url, data=json.dumps(params), headers=headers)
         res = self.session.post(url, data=json.dumps(params), headers=headers).json()  # 登录用户中心
-        start_sf_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/startAuditWork' # 获取开始审方url
+        start_sf_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/startAuditWork'  # 获取开始审方url
         self.session.get(url=start_sf_url)  # 开始审方
 
     # def get_session(self):
