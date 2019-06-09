@@ -3,6 +3,7 @@
 # @Author  : wangmengmeng
 import json
 import unittest
+from common.template import Template
 
 from common.login import Login
 
@@ -13,12 +14,12 @@ class TestAddTag(unittest.TestCase):
         pass
 
     def test_add_tag_normal(self):
-        login = Login()
-        self.session = login.get_session()
+        temp = Template()
         url = 'http://10.1.1.89:9999/auditcenter/api/v1/collect/addTag'
-        params = {"tag": "收藏分类15"}
+        params = {"tag": "abc123"}
         headers = {'Content-Type': "application/json"}
-        res = self.session.post(url, data=json.dumps(params), headers=headers).json()
+        res = temp.post_json(url,params,headers).json()
+        print(res)
         self.assertEquals(res['code'], '200')
 
 

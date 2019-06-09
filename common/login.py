@@ -17,7 +17,7 @@ class Login():
         m = hashlib.md5() # 创建md5对象
         m.update(passwd.encode()) #  生成加密字符串
         password = m.hexdigest()
-        params = {"name": username, "password": "password"}
+        params = {"name": username, "password": password}
         headers = {'Content-Type': "application/json"}
         self.session = requests.session()
         self.session.post(url, data=json.dumps(params), headers=headers)
