@@ -16,7 +16,7 @@ class TestAddTag(unittest.TestCase):
     def test_add_tag_normal(self):
         temp = Template()
         url = 'http://10.1.1.89:9999/auditcenter/api/v1/collect/addTag'
-        params = {"tag": "abc1234"}
+        params = {"tag": "abc1234555610"}
         res = temp.post_json(url,params)
         print(res)
         self.assertEquals(res['code'], '200')

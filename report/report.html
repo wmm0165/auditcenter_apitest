@@ -123,9 +123,9 @@ function html_escape(s) {
 <div class='heading'>
 <h1 style="font-family: Microsoft YaHei">Api Test</h1>
 <p class='attribute'><strong>测试人员 : </strong> wangmengmeng</p>
-<p class='attribute'><strong>开始时间 : </strong> 2019-06-06 00:23:44</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:00:00.198287</p>
-<p class='attribute'><strong>测试结果 : </strong> 共 1，通过 1，通过率= 100.00%</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-06-09 18:30:48</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:10.436277</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 3，通过 3，通过率= 100.00%</p>
 
 <p class='description'>测试描述</p>
 </div>
@@ -135,8 +135,8 @@ function html_escape(s) {
 <p id='show_detail_line'>
 <a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
 <a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
-<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 1 }</a>
-<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 1 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 3 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 3 }</a>
 </p>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
 <colgroup>
@@ -167,13 +167,212 @@ function html_escape(s) {
 
 <tr id='pt1_1' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_add_tag_normal</div></td>
-    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse in">
+    <pre>
+    
+pt1_1: {'code': '200', 'message': 'OK', 'data': True}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>test_send.TestSend</td>
+    <td class="text-center">2</td>
+    <td class="text-center">2</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c2',2)" class="detail" id='c2'>详细</a></td>
+</tr>
+
+<tr id='pt2_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_get_engineid</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse in">
+    <pre>
+    
+pt2_1: E:\myproj\auditcenter_apitest\config\body_xml.txt
+&lt;root&gt;
+  &lt;base&gt;
+    &lt;hospital_code&gt;&lt;![CDATA[H0003]]&gt;&lt;/hospital_code&gt;
+    &lt;event_no&gt;&lt;![CDATA[1560076247000]]&gt;&lt;/event_no&gt;
+    &lt;patient_id&gt;&lt;![CDATA[1560076247000]]&gt;&lt;/patient_id&gt;
+    &lt;source&gt;&lt;![CDATA[急诊]]&gt;&lt;/source&gt;
+  &lt;/base&gt;
+    &lt;opt_patient&gt;
+    &lt;sex&gt;&lt;![CDATA[1]]&gt;&lt;/sex&gt;
+    &lt;name&gt;&lt;![CDATA[1560076247000]]&gt;&lt;/name&gt;
+    &lt;id_type&gt;&lt;![CDATA[01]]&gt;&lt;/id_type&gt;
+    &lt;id_no&gt;&lt;![CDATA[330101200003058932]]&gt;&lt;/id_no&gt;
+    &lt;birth_weight&gt;&lt;![CDATA[3001g]]&gt;&lt;/birth_weight&gt;
+    &lt;birthday&gt;&lt;![CDATA[1994-03-05]]&gt;&lt;/birthday&gt;
+    &lt;ethnic_group&gt;&lt;![CDATA[01]]&gt;&lt;/ethnic_group&gt;
+    &lt;native_place&gt;&lt;![CDATA[浙江省杭州市西湖区]]&gt;&lt;/native_place&gt;
+    &lt;race&gt;&lt;![CDATA[蒙古人种]]&gt;&lt;/race&gt;
+    &lt;med_card_no&gt;&lt;![CDATA[23908]]&gt;&lt;/med_card_no&gt;
+    &lt;event_time&gt;&lt;![CDATA[2019-06-09 18:30:47]]&gt;&lt;/event_time&gt;
+    &lt;dept_id&gt;&lt;![CDATA[914000133]]&gt;&lt;/dept_id&gt;
+    &lt;dept_name&gt;&lt;![CDATA[测试门诊]]&gt;&lt;/dept_name&gt;
+    &lt;pay_type&gt;&lt;![CDATA[1_3101]]&gt;&lt;/pay_type&gt;
+    &lt;pregnancy&gt;&lt;![CDATA[]]&gt;&lt;/pregnancy&gt;
+    &lt;time_of_preg&gt;&lt;![CDATA[36]]&gt;&lt;/time_of_preg&gt;
+    &lt;breast_feeding&gt;&lt;![CDATA[]]&gt;&lt;/breast_feeding&gt;
+    &lt;height&gt;&lt;![CDATA[160cm]]&gt;&lt;/height&gt;
+    &lt;weight&gt;&lt;![CDATA[60kg]]&gt;&lt;/weight&gt;
+    &lt;address&gt;&lt;![CDATA[杭州市西湖区西溪路525号]]&gt;&lt;/address&gt;
+    &lt;phone_no&gt;&lt;![CDATA[123456]]&gt;&lt;/phone_no&gt;
+    &lt;dialysis&gt;&lt;![CDATA[0]]&gt;&lt;/dialysis&gt;
+    &lt;marital&gt;&lt;![CDATA[10]]&gt;&lt;/marital&gt;
+    &lt;occupation&gt;&lt;![CDATA[21]]&gt;&lt;/occupation&gt;
+    &lt;special_constitution&gt;&lt;![CDATA[疤痕体质]]&gt;&lt;/special_constitution&gt;
+    &lt;patient_condition&gt;&lt;![CDATA[危重病人]]&gt;&lt;/patient_condition&gt;
+    &lt;visit_type&gt;&lt;![CDATA[急诊]]&gt;&lt;/visit_type&gt;
+  &lt;/opt_patient&gt;
+&lt;opt_prescriptions&gt;
+  &lt;opt_prescription&gt;
+    &lt;opt_prescription_info&gt;
+      &lt;recipe_id&gt;&lt;![CDATA[r_1560076247000]]&gt;&lt;/recipe_id&gt;
+      &lt;recipe_no&gt;&lt;![CDATA[r_1560076247000]]&gt;&lt;/recipe_no&gt;
+      &lt;recipe_source&gt;&lt;![CDATA[急诊]]&gt;&lt;/recipe_source&gt;
+      &lt;recipe_category&gt;&lt;![CDATA[普通处方]]&gt;&lt;/recipe_category&gt;
+      &lt;recipe_type&gt;&lt;![CDATA[西药方]]&gt;&lt;/recipe_type&gt;
+      &lt;dept_id&gt;&lt;![CDATA[914000133]]&gt;&lt;/dept_id&gt;
+      &lt;dept_name&gt;&lt;![CDATA[测试门诊]]&gt;&lt;/dept_name&gt;
+      &lt;recipe_doc_title&gt;&lt;![CDATA[231]]&gt;&lt;/recipe_doc_title&gt;
+      &lt;recipe_doc_id&gt;&lt;![CDATA[09]]&gt;&lt;/recipe_doc_id&gt;
+      &lt;recipe_doc_name&gt;&lt;![CDATA[医生王]]&gt;&lt;/recipe_doc_name&gt;
+      &lt;recipe_time&gt;&lt;![CDATA[2019-06-09 18:30:47]]&gt;&lt;/recipe_time&gt;
+      &lt;herb_unit_price&gt;&lt;![CDATA[50]]&gt;&lt;/herb_unit_price&gt;
+      &lt;herb_packet_count&gt;&lt;![CDATA[20]]&gt;&lt;/herb_packet_count&gt;
+      &lt;duration&gt;&lt;![CDATA[4天/次]]&gt;&lt;/duration&gt;
+      &lt;is_cream&gt;&lt;![CDATA[0]]&gt;&lt;/is_cream&gt;
+      &lt;recipe_fee_total&gt;&lt;![CDATA[44.55]]&gt;&lt;/recipe_fee_total&gt;
+      &lt;original_recipe_id&gt;&lt;![CDATA[]]&gt;&lt;/original_recipe_id&gt;
+      &lt;recipe_status&gt;&lt;![CDATA[0]]&gt;&lt;/recipe_status&gt;
+      &lt;urgent_flag&gt;&lt;![CDATA[1]]&gt;&lt;/urgent_flag&gt;
+      &lt;pharmacy_id&gt;&lt;![CDATA[123456]]&gt;&lt;/pharmacy_id&gt;
+      &lt;pharmacy_name&gt;&lt;![CDATA[发药药房名称]]&gt;&lt;/pharmacy_name&gt;
+    &lt;/opt_prescription_info&gt;
+    &lt;opt_prescription_item&gt;
+      &lt;recipe_item_id&gt;&lt;![CDATA[r1_1560076247000]]&gt;&lt;/recipe_item_id&gt;
+      &lt;recipe_id&gt;&lt;![CDATA[r_1560076247000]]&gt;&lt;/recipe_id&gt;
+      &lt;drug_purpose&gt;&lt;![CDATA[科室领药]]&gt;&lt;/drug_purpose&gt;
+      &lt;group_no&gt;&lt;![CDATA[720483_1]]&gt;&lt;/group_no&gt;
+      &lt;drug_id&gt;&lt;![CDATA[502291]]&gt;&lt;/drug_id&gt;
+      &lt;drug_name&gt;&lt;![CDATA[75%乙醇消毒液]]&gt;&lt;/drug_name&gt;
+      &lt;count_unit&gt;&lt;![CDATA[6]]&gt;&lt;/count_unit&gt;
+      &lt;pack_unit&gt;&lt;![CDATA[盒]]&gt;&lt;/pack_unit&gt;
+      &lt;manufacturer_id&gt;&lt;![CDATA[12]]&gt;&lt;/manufacturer_id&gt;
+      &lt;manufacturer_name&gt;&lt;![CDATA[西安杨森制药有限公司]]&gt;&lt;/manufacturer_name&gt;
+      &lt;drug_dose&gt;&lt;![CDATA[0.25g]]&gt;&lt;/drug_dose&gt;
+      &lt;drug_admin_route_name&gt;&lt;![CDATA[口服]]&gt;&lt;/drug_admin_route_name&gt;
+      &lt;drug_using_freq&gt;&lt;![CDATA[bid]]&gt;&lt;/drug_using_freq&gt;
+      &lt;drug_using_time_point&gt;&lt;![CDATA[餐前]]&gt;&lt;/drug_using_time_point&gt;
+      &lt;drug_using_aim&gt;&lt;![CDATA[治疗]]&gt;&lt;/drug_using_aim&gt;
+      &lt;drug_using_area&gt;&lt;![CDATA[全身]]&gt;&lt;/drug_using_area&gt;
+      &lt;duration&gt;&lt;![CDATA[3天]]&gt;&lt;/duration&gt;
+      &lt;preparation&gt;&lt;![CDATA[普通片]]&gt;&lt;/preparation&gt;
+      &lt;specification&gt;&lt;![CDATA[0.1g]]&gt;&lt;/specification&gt;
+      &lt;unit_price&gt;&lt;![CDATA[6.30]]&gt;&lt;/unit_price&gt;
+      &lt;despensing_num&gt;&lt;![CDATA[3]]&gt;&lt;/despensing_num&gt;
+      &lt;fee_total&gt;&lt;![CDATA[6.30]]&gt;&lt;/fee_total&gt;
+      &lt;start_time&gt;&lt;![CDATA[2019-06-09 18:30:47]]&gt;&lt;/start_time&gt;
+      &lt;end_time&gt;&lt;![CDATA[2019-06-09 18:30:47]]&gt;&lt;/end_time&gt;
+      &lt;special_prompt&gt;&lt;![CDATA[忌辛辣]]&gt;&lt;/special_prompt&gt;
+      &lt;skin_test_flag&gt;&lt;![CDATA[0]]&gt;&lt;/skin_test_flag&gt;
+      &lt;skin_test_result&gt;&lt;![CDATA[皮试结果]]&gt;&lt;/skin_test_result&gt;
+      &lt;skin_test_time&gt;&lt;![CDATA[2019-06-09 18:30:47]]&gt;&lt;/skin_test_time&gt;
+      &lt;drug_source&gt;&lt;![CDATA[1]]&gt;&lt;/drug_source&gt;
+      &lt;drug_return_flag&gt;&lt;![CDATA[0]]&gt;&lt;/drug_return_flag&gt;
+      &lt;ouvas_flag&gt;&lt;![CDATA[1]]&gt;&lt;/ouvas_flag&gt;
+      &lt;infusion_speed&gt;&lt;![CDATA[20滴/分钟]]&gt;&lt;/infusion_speed&gt;
+	  &lt;limit_time&gt;&lt;![CDATA[限用时间]]&gt;&lt;/limit_time&gt;
+      &lt;therapeutic_regimen&gt;&lt;![CDATA[用药方案]]&gt;&lt;/therapeutic_regimen&gt;
+      &lt;medicare_type&gt;&lt;![CDATA[1]]&gt;&lt;/medicare_type&gt;
+     &lt;/opt_prescription_item&gt;
+  &lt;/opt_prescription&gt;
+&lt;/opt_prescriptions&gt;
+  &lt;opt_diagnoses&gt;
+  &lt;opt_diagnosis&gt;
+    &lt;diag_id&gt;&lt;![CDATA[1560076247000]]&gt;&lt;/diag_id&gt;
+    &lt;diag_dept_id&gt;&lt;![CDATA[01]]&gt;&lt;/diag_dept_id&gt;
+    &lt;diag_dept_name&gt;&lt;![CDATA[麻醉(门)]]&gt;&lt;/diag_dept_name&gt;
+    &lt;diag_doc_id&gt;&lt;![CDATA[1_3101]]&gt;&lt;/diag_doc_id&gt;
+    &lt;diag_doc_name&gt;&lt;![CDATA[王师傅]]&gt;&lt;/diag_doc_name&gt;
+    &lt;diag_doc_title&gt;&lt;![CDATA[231]]&gt;&lt;/diag_doc_title&gt;
+    &lt;diag_date&gt;&lt;![CDATA[2019-06-09 18:30:47]]&gt;&lt;/diag_date&gt;
+    &lt;diag_category&gt;&lt;![CDATA[主要诊断]]&gt;&lt;/diag_category&gt;
+    &lt;diag_type&gt;&lt;![CDATA[2]]&gt;&lt;/diag_type&gt;
+    &lt;diag_name&gt;&lt;![CDATA[霍乱测试]]&gt;&lt;/diag_name&gt;
+    &lt;diag_code&gt;&lt;![CDATA[huoluan]]&gt;&lt;/diag_code&gt;
+    &lt;diag_code_type&gt;&lt;![CDATA[1]]&gt;&lt;/diag_code_type&gt;
+    &lt;disease_classification&gt;&lt;![CDATA[非浸润性]]&gt;&lt;/disease_classification&gt;
+    &lt;disease_staging&gt;&lt;![CDATA[ⅠA期]]&gt;&lt;/disease_staging&gt;
+    &lt;disease_score&gt;&lt;![CDATA[3]]&gt;&lt;/disease_score&gt;
+	&lt;scoring_scale&gt;&lt;![CDATA[KPS]]&gt;&lt;/scoring_scale&gt;
+	&lt;diag_status&gt;&lt;![CDATA[0]]&gt;&lt;/diag_status&gt;
+    &lt;/opt_diagnosis&gt;
+  &lt;/opt_diagnoses&gt;
+&lt;/root&gt;
+{'code': '200', 'data': '&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;root&gt;&lt;is_success&gt;&lt;![CDATA[1]]&gt;&lt;/is_success&gt;&lt;message&gt;&lt;![CDATA[解析xml成功]]&gt;&lt;/message&gt;&lt;base&gt;&lt;hospital_code&gt;&lt;![CDATA[H0003]]&gt;&lt;/hospital_code&gt;&lt;event_no&gt;&lt;![CDATA[1560076247000]]&gt;&lt;/event_no&gt;&lt;patient_id&gt;&lt;![CDATA[1560076247000]]&gt;&lt;/patient_id&gt;&lt;source&gt;&lt;![CDATA[急诊]]&gt;&lt;/source&gt;&lt;/base&gt;&lt;/root&gt;', 'message': 'OK'}
+{'code': '200', 'message': 'OK', 'data': {'optRecipeList': [{'infos': [], 'optRecipe': {'id': 9250, 'originalId': None, 'zoneId': 1, 'eventNo': '1560074996000', 'patientId': '1560074996000', 'keyDate': 1560074916195, 'recipeId': 'r_1560074996000', 'recipeNo': 'r_1560074996000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560074996000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 85139, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9251, 'originalId': None, 'zoneId': 1, 'eventNo': '1560075296000', 'patientId': '1560075296000', 'keyDate': 1560075216707, 'recipeId': 'r_1560075296000', 'recipeNo': 'r_1560075296000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560075296000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 85439, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9252, 'originalId': None, 'zoneId': 1, 'eventNo': '1560075329000', 'patientId': '1560075329000', 'keyDate': 1560075249512, 'recipeId': 'r_1560075329000', 'recipeNo': 'r_1560075329000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560075329000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 85472, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9253, 'originalId': None, 'zoneId': 1, 'eventNo': '1560075348000', 'patientId': '1560075348000', 'keyDate': 1560075268693, 'recipeId': 'r_1560075348000', 'recipeNo': 'r_1560075348000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560075348000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 85491, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9254, 'originalId': None, 'zoneId': 1, 'eventNo': '1560075398000', 'patientId': '1560075398000', 'keyDate': 1560075319134, 'recipeId': 'r_1560075398000', 'recipeNo': 'r_1560075398000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560075398000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 85542, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9255, 'originalId': None, 'zoneId': 1, 'eventNo': '1560075421000', 'patientId': '1560075421000', 'keyDate': 1560075341530, 'recipeId': 'r_1560075421000', 'recipeNo': 'r_1560075421000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560075421000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 85564, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9256, 'originalId': None, 'zoneId': 1, 'eventNo': '1560075468000', 'patientId': '1560075468000', 'keyDate': 1560075388634, 'recipeId': 'r_1560075468000', 'recipeNo': 'r_1560075468000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560075468000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 85611, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9257, 'originalId': None, 'zoneId': 1, 'eventNo': '1560075863000', 'patientId': '1560075863000', 'keyDate': 1560075783495, 'recipeId': 'r_1560075863000', 'recipeNo': 'r_1560075863000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560075863000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 86006, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9258, 'originalId': None, 'zoneId': 1, 'eventNo': '1560076011000', 'patientId': '1560076011000', 'keyDate': 1560075931175, 'recipeId': 'r_1560076011000', 'recipeNo': 'r_1560076011000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560076011000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 86154, 'lookTime': True}, {'infos': [], 'optRecipe': {'id': 9259, 'originalId': None, 'zoneId': 1, 'eventNo': '1560076153000', 'patientId': '1560076153000', 'keyDate': 1560076073855, 'recipeId': 'r_1560076153000', 'recipeNo': 'r_1560076153000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560076153000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 86296, 'lookTime': True}], 'totalTaskNum': 11, 'taskNumList': [{'zoneId': 1, 'deptId': '914000133', 'deptName': '测试门诊', 'zoneName': None, 'taskNum': 11}]}}
+
+
+
+
+
+
+
+
+
+
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt2_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_query</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt2_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_2'>通过</button>
+    <div id='div_pt2_2' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt2_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt2_2'>通过</button>
+    <div id='div_pt2_2' class="collapse in">
+    <pre>
+    
+pt2_2: http://10.1.1.89:9999/auditcenter/api/v1/opt/recipeInfo/
+{'timestamp': 1560076178139, 'status': 404, 'error': 'Not Found', 'message': 'No message available', 'path': '/api/v1/opt/recipeInfo/'}
+
+
+    </pre>
+    </div>
+    </td>
 </tr>
 
 <tr id='total_row' class="text-center active">
     <td>总计</td>
-    <td>1</td>
-    <td>1</td>
+    <td>3</td>
+    <td>3</td>
     <td>0</td>
     <td>0</td>
     <td>通过率：100.00%</td>
