@@ -26,7 +26,7 @@ class TestSend(unittest.TestCase):
         res = self.tem.send_data(xml_name, **TestSend.change)
         print(res)
         time.sleep(10)
-        # 查询待审列表，获取引擎id
+        # 查询待审列表，获取引擎id（注意：右侧待审任务只能展示10条，所以10条之外的数据查询不到）
         param = {}
         res2 = self.tem.post_json('http://10.1.1.89:9999/auditcenter/api/v1/opt/selNotAuditOptList', param)
         print(res2)
