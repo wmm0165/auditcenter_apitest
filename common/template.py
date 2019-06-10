@@ -57,5 +57,5 @@ if __name__ == '__main__':
     change = {"{{eno}}": "a", "{{pid}}": "b", "{{ts}}": "c",
               "{{gp}}": "d",
               "{{d2}}": "e"}
-    xml_name = 'body_xml.txt'
+    xml_name = 'body_xml_1.txt'
     t.send_data(xml_name, **change)
