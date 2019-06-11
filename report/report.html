@@ -123,9 +123,9 @@ function html_escape(s) {
 <div class='heading'>
 <h1 style="font-family: Microsoft YaHei">Api Test</h1>
 <p class='attribute'><strong>测试人员 : </strong> wangmengmeng</p>
-<p class='attribute'><strong>开始时间 : </strong> 2019-06-10 14:54:26</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:00:10.227526</p>
-<p class='attribute'><strong>测试结果 : </strong> 共 3，通过 2，失败 1，通过率= 66.67%</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-06-10 19:20:58</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:10.275372</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 3，通过 3，通过率= 100.00%</p>
 
 <p class='description'>测试描述</p>
 </div>
@@ -133,9 +133,9 @@ function html_escape(s) {
 
 
 <p id='show_detail_line'>
-<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 66.67% }</a>
-<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 1 }</a>
-<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 2 }</a>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 3 }</a>
 <a class="btn btn-info" href='javascript:showCase(3)'>所有{ 3 }</a>
 </p>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
@@ -156,37 +156,28 @@ function html_escape(s) {
     <td>详细</td>
 </tr>
 
-<tr class='failClass warning'>
+<tr class='passClass warning'>
     <td>test_add_tag.TestAddTag</td>
     <td class="text-center">1</td>
-    <td class="text-center">0</td>
     <td class="text-center">1</td>
+    <td class="text-center">0</td>
     <td class="text-center">0</td>
     <td class="text-center"><a href="javascript:showClassDetail('c1',1)" class="detail" id='c1'>详细</a></td>
 </tr>
 
-<tr id='ft1_1' class='none'>
-    <td class='failCase'><div class='testcase'>test_add_tag_normal</div></td>
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_tag_normal</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
-    <button id='btn_ft1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
-    <div id='div_ft1_1' class="collapse">  -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
 
     <!-- 默认展开错误信息 -Findyou -->
-    <button id='btn_ft1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
-    <div id='div_ft1_1' class="collapse in">
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse in">
     <pre>
     
-ft1_1: {'code': '400', 'message': '相同标题的分类已经存在！', 'data': None}
-Traceback (most recent call last):
-  File "E:\myproj\auditcenter_apitest\testcase\test_add_tag.py", line 22, in test_add_tag_normal
-    self.assertEquals(res['code'], '200')
-AssertionError: '400' != '200'
-- 400
-? ^
-+ 200
-? ^
-
+pt1_1: {'code': '200', 'message': 'OK', 'data': True}
 
 
     </pre>
@@ -216,242 +207,7 @@ AssertionError: '400' != '200'
     <pre>
     
 pt2_1: 开始执行用例...
-E:\myproj\auditcenter_apitest\config\body_xml_1.txt
-&lt;root&gt;
-  &lt;base&gt;
-    &lt;hospital_code&gt;&lt;![CDATA[H0003]]&gt;&lt;/hospital_code&gt;
-    &lt;event_no&gt;&lt;![CDATA[1560149666000]]&gt;&lt;/event_no&gt;
-    &lt;patient_id&gt;&lt;![CDATA[1560149666000]]&gt;&lt;/patient_id&gt;
-    &lt;source&gt;&lt;![CDATA[急诊]]&gt;&lt;/source&gt;
-  &lt;/base&gt;
-  &lt;opt_patient&gt;
-    &lt;sex&gt;&lt;![CDATA[1]]&gt;&lt;/sex&gt;
-    &lt;name&gt;&lt;![CDATA[1560149666000]]&gt;&lt;/name&gt;
-    &lt;id_type&gt;&lt;![CDATA[01]]&gt;&lt;/id_type&gt;
-    &lt;id_no&gt;&lt;![CDATA[330101200003058932]]&gt;&lt;/id_no&gt;
-    &lt;birth_weight&gt;&lt;![CDATA[3001g]]&gt;&lt;/birth_weight&gt;
-    &lt;birthday&gt;&lt;![CDATA[1994-03-05]]&gt;&lt;/birthday&gt;
-    &lt;ethnic_group&gt;&lt;![CDATA[01]]&gt;&lt;/ethnic_group&gt;
-    &lt;native_place&gt;&lt;![CDATA[浙江省杭州市西湖区]]&gt;&lt;/native_place&gt;
-    &lt;race&gt;&lt;![CDATA[蒙古人种]]&gt;&lt;/race&gt;
-    &lt;med_card_no&gt;&lt;![CDATA[23908]]&gt;&lt;/med_card_no&gt;
-    &lt;event_time&gt;&lt;![CDATA[{{d1}}]]&gt;&lt;/event_time&gt;
-    &lt;dept_id&gt;&lt;![CDATA[914000133]]&gt;&lt;/dept_id&gt;
-    &lt;dept_name&gt;&lt;![CDATA[测试门诊]]&gt;&lt;/dept_name&gt;
-    &lt;pay_type&gt;&lt;![CDATA[1_3101]]&gt;&lt;/pay_type&gt;
-    &lt;pregnancy&gt;&lt;![CDATA[1]]&gt;&lt;/pregnancy&gt;
-    &lt;time_of_preg&gt;&lt;![CDATA[36]]&gt;&lt;/time_of_preg&gt;
-    &lt;breast_feeding&gt;&lt;![CDATA[1]]&gt;&lt;/breast_feeding&gt;
-    &lt;height&gt;&lt;![CDATA[160cm]]&gt;&lt;/height&gt;
-    &lt;weight&gt;&lt;![CDATA[60kg]]&gt;&lt;/weight&gt;
-    &lt;address&gt;&lt;![CDATA[杭州市西湖区西溪路525号]]&gt;&lt;/address&gt;
-    &lt;phone_no&gt;&lt;![CDATA[123456]]&gt;&lt;/phone_no&gt;
-    &lt;dialysis&gt;&lt;![CDATA[0]]&gt;&lt;/dialysis&gt;
-    &lt;marital&gt;&lt;![CDATA[10]]&gt;&lt;/marital&gt;
-    &lt;occupation&gt;&lt;![CDATA[21]]&gt;&lt;/occupation&gt;
-    &lt;special_constitution&gt;&lt;![CDATA[疤痕体质]]&gt;&lt;/special_constitution&gt;
-    &lt;patient_condition&gt;&lt;![CDATA[危重病人]]&gt;&lt;/patient_condition&gt;
-    &lt;visit_type&gt;&lt;![CDATA[急诊]]&gt;&lt;/visit_type&gt;
-  &lt;/opt_patient&gt;
-&lt;opt_diagnoses&gt;
-  &lt;opt_diagnosis&gt;
-    &lt;diag_id&gt;&lt;![CDATA[1560048866000]]&gt;&lt;/diag_id&gt;
-    &lt;diag_dept_id&gt;&lt;![CDATA[01]]&gt;&lt;/diag_dept_id&gt;
-    &lt;diag_dept_name&gt;&lt;![CDATA[麻醉(门)]]&gt;&lt;/diag_dept_name&gt;
-    &lt;diag_doc_id&gt;&lt;![CDATA[1_3101]]&gt;&lt;/diag_doc_id&gt;
-    &lt;diag_doc_name&gt;&lt;![CDATA[王师傅]]&gt;&lt;/diag_doc_name&gt;
-    &lt;diag_doc_title&gt;&lt;![CDATA[231]]&gt;&lt;/diag_doc_title&gt;
-    &lt;diag_date&gt;&lt;![CDATA[2019-06-09 10:54:26]]&gt;&lt;/diag_date&gt;
-    &lt;diag_category&gt;&lt;![CDATA[主要诊断]]&gt;&lt;/diag_category&gt;
-    &lt;diag_type&gt;&lt;![CDATA[A00.1]]&gt;&lt;/diag_type&gt;
-    &lt;diag_name&gt;&lt;![CDATA[诊断1]]&gt;&lt;/diag_name&gt;
-    &lt;diag_code&gt;&lt;![CDATA[zhenduan1]]&gt;&lt;/diag_code&gt;
-    &lt;diag_code_type&gt;&lt;![CDATA[1]]&gt;&lt;/diag_code_type&gt;
-    &lt;disease_classification&gt;&lt;![CDATA[非浸润性]]&gt;&lt;/disease_classification&gt;
-    &lt;disease_staging&gt;&lt;![CDATA[ⅠA期]]&gt;&lt;/disease_staging&gt;
-    &lt;disease_score&gt;&lt;![CDATA[3]]&gt;&lt;/disease_score&gt;
-    &lt;scoring_scale&gt;&lt;![CDATA[KPS]]&gt;&lt;/scoring_scale&gt;
-    &lt;diag_status&gt;&lt;![CDATA[0]]&gt;&lt;/diag_status&gt;
-  &lt;/opt_diagnosis&gt;
-&lt;/opt_diagnoses&gt;
-&lt;/root&gt;
-
-E:\myproj\auditcenter_apitest\config\body_xml_2.txt
-&lt;root&gt;
-  &lt;base&gt;
-    &lt;hospital_code&gt;&lt;![CDATA[H0003]]&gt;&lt;/hospital_code&gt;
-    &lt;event_no&gt;&lt;![CDATA[1560149666000_1]]&gt;&lt;/event_no&gt;
-    &lt;patient_id&gt;&lt;![CDATA[1560149666000]]&gt;&lt;/patient_id&gt;
-    &lt;source&gt;&lt;![CDATA[急诊]]&gt;&lt;/source&gt;
-  &lt;/base&gt;
-&lt;opt_diagnoses&gt;
-  &lt;opt_diagnosis&gt;
-    &lt;diag_id&gt;&lt;![CDATA[1560059666000]]&gt;&lt;/diag_id&gt;
-    &lt;diag_dept_id&gt;&lt;![CDATA[01]]&gt;&lt;/diag_dept_id&gt;
-    &lt;diag_dept_name&gt;&lt;![CDATA[麻醉(门)]]&gt;&lt;/diag_dept_name&gt;
-    &lt;diag_doc_id&gt;&lt;![CDATA[1_3101]]&gt;&lt;/diag_doc_id&gt;
-    &lt;diag_doc_name&gt;&lt;![CDATA[王师傅]]&gt;&lt;/diag_doc_name&gt;
-    &lt;diag_doc_title&gt;&lt;![CDATA[231]]&gt;&lt;/diag_doc_title&gt;
-    &lt;diag_date&gt;&lt;![CDATA[2019-06-09 15:54:26]]&gt;&lt;/diag_date&gt;
-    &lt;diag_category&gt;&lt;![CDATA[主要诊断]]&gt;&lt;/diag_category&gt;
-    &lt;diag_type&gt;&lt;![CDATA[A00.1]]&gt;&lt;/diag_type&gt;
-    &lt;diag_name&gt;&lt;![CDATA[诊断2]]&gt;&lt;/diag_name&gt;
-    &lt;diag_code&gt;&lt;![CDATA[zhenduan2]]&gt;&lt;/diag_code&gt;
-    &lt;diag_code_type&gt;&lt;![CDATA[1]]&gt;&lt;/diag_code_type&gt;
-    &lt;disease_classification&gt;&lt;![CDATA[非浸润性]]&gt;&lt;/disease_classification&gt;
-    &lt;disease_staging&gt;&lt;![CDATA[ⅠA期]]&gt;&lt;/disease_staging&gt;
-    &lt;disease_score&gt;&lt;![CDATA[3]]&gt;&lt;/disease_score&gt;
-    &lt;scoring_scale&gt;&lt;![CDATA[KPS]]&gt;&lt;/scoring_scale&gt;
-    &lt;diag_status&gt;&lt;![CDATA[0]]&gt;&lt;/diag_status&gt;
-  &lt;/opt_diagnosis&gt;
-&lt;/opt_diagnoses&gt;
-&lt;/root&gt;
-
-E:\myproj\auditcenter_apitest\config\body_xml_3.txt
-&lt;root&gt;
-  &lt;base&gt;
-    &lt;hospital_code&gt;&lt;![CDATA[H0003]]&gt;&lt;/hospital_code&gt;
-    &lt;event_no&gt;&lt;![CDATA[1560149666000]]&gt;&lt;/event_no&gt;
-    &lt;patient_id&gt;&lt;![CDATA[1560149666000]]&gt;&lt;/patient_id&gt;
-    &lt;source&gt;&lt;![CDATA[急诊]]&gt;&lt;/source&gt;
-  &lt;/base&gt;
-  &lt;opt_prescriptions&gt;
-    &lt;opt_prescription&gt;
-      &lt;opt_prescription_info&gt;
-        &lt;recipe_id&gt;&lt;![CDATA[r_1560149666000]]&gt;&lt;/recipe_id&gt;
-        &lt;recipe_no&gt;&lt;![CDATA[r_1560149666000]]&gt;&lt;/recipe_no&gt;
-        &lt;recipe_source&gt;&lt;![CDATA[急诊]]&gt;&lt;/recipe_source&gt;
-        &lt;recipe_category&gt;&lt;![CDATA[普通处方]]&gt;&lt;/recipe_category&gt;
-        &lt;recipe_type&gt;&lt;![CDATA[西药方]]&gt;&lt;/recipe_type&gt;
-        &lt;dept_id&gt;&lt;![CDATA[914000133]]&gt;&lt;/dept_id&gt;
-        &lt;dept_name&gt;&lt;![CDATA[测试门诊]]&gt;&lt;/dept_name&gt;
-        &lt;recipe_doc_title&gt;&lt;![CDATA[231]]&gt;&lt;/recipe_doc_title&gt;
-        &lt;recipe_doc_id&gt;&lt;![CDATA[09]]&gt;&lt;/recipe_doc_id&gt;
-        &lt;recipe_doc_name&gt;&lt;![CDATA[医生王]]&gt;&lt;/recipe_doc_name&gt;
-        &lt;recipe_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/recipe_time&gt;
-        &lt;herb_unit_price&gt;&lt;![CDATA[50]]&gt;&lt;/herb_unit_price&gt;
-        &lt;herb_packet_count&gt;&lt;![CDATA[20]]&gt;&lt;/herb_packet_count&gt;
-        &lt;duration&gt;&lt;![CDATA[4天/次]]&gt;&lt;/duration&gt;
-        &lt;is_cream&gt;&lt;![CDATA[0]]&gt;&lt;/is_cream&gt;
-        &lt;recipe_fee_total&gt;&lt;![CDATA[44.55]]&gt;&lt;/recipe_fee_total&gt;
-        &lt;original_recipe_id&gt;&lt;![CDATA[]]&gt;&lt;/original_recipe_id&gt;
-        &lt;recipe_status&gt;&lt;![CDATA[0]]&gt;&lt;/recipe_status&gt;
-        &lt;urgent_flag&gt;&lt;![CDATA[1]]&gt;&lt;/urgent_flag&gt;
-        &lt;pharmacy_id&gt;&lt;![CDATA[123456]]&gt;&lt;/pharmacy_id&gt;
-        &lt;pharmacy_name&gt;&lt;![CDATA[发药药房名称]]&gt;&lt;/pharmacy_name&gt;
-      &lt;/opt_prescription_info&gt;
-      &lt;opt_prescription_item&gt;
-        &lt;recipe_item_id&gt;&lt;![CDATA[r1_1560149666000]]&gt;&lt;/recipe_item_id&gt;
-        &lt;recipe_id&gt;&lt;![CDATA[r_1560149666000]]&gt;&lt;/recipe_id&gt;
-        &lt;drug_purpose&gt;&lt;![CDATA[科室领药]]&gt;&lt;/drug_purpose&gt;
-        &lt;group_no&gt;&lt;![CDATA[334510]]&gt;&lt;/group_no&gt;
-        &lt;drug_id&gt;&lt;![CDATA[00234300]]&gt;&lt;/drug_id&gt;
-        &lt;drug_name&gt;&lt;![CDATA[盐酸维拉帕米注射液]]&gt;&lt;/drug_name&gt;
-        &lt;count_unit&gt;&lt;![CDATA[6]]&gt;&lt;/count_unit&gt;
-        &lt;pack_unit&gt;&lt;![CDATA[盒]]&gt;&lt;/pack_unit&gt;
-        &lt;manufacturer_id&gt;&lt;![CDATA[12]]&gt;&lt;/manufacturer_id&gt;
-        &lt;manufacturer_name&gt;&lt;![CDATA[西安杨森制药有限公司]]&gt;&lt;/manufacturer_name&gt;
-        &lt;drug_dose&gt;&lt;![CDATA[0.25g]]&gt;&lt;/drug_dose&gt;
-        &lt;drug_admin_route_name&gt;&lt;![CDATA[口服]]&gt;&lt;/drug_admin_route_name&gt;
-        &lt;drug_using_freq&gt;&lt;![CDATA[bid]]&gt;&lt;/drug_using_freq&gt;
-        &lt;drug_using_time_point&gt;&lt;![CDATA[餐前]]&gt;&lt;/drug_using_time_point&gt;
-        &lt;drug_using_aim&gt;&lt;![CDATA[治疗]]&gt;&lt;/drug_using_aim&gt;
-        &lt;drug_using_area&gt;&lt;![CDATA[全身]]&gt;&lt;/drug_using_area&gt;
-        &lt;duration&gt;&lt;![CDATA[3天]]&gt;&lt;/duration&gt;
-        &lt;preparation&gt;&lt;![CDATA[普通片]]&gt;&lt;/preparation&gt;
-        &lt;specification&gt;&lt;![CDATA[0.1g]]&gt;&lt;/specification&gt;
-        &lt;unit_price&gt;&lt;![CDATA[6.30]]&gt;&lt;/unit_price&gt;
-        &lt;despensing_num&gt;&lt;![CDATA[3]]&gt;&lt;/despensing_num&gt;
-        &lt;fee_total&gt;&lt;![CDATA[6.30]]&gt;&lt;/fee_total&gt;
-        &lt;start_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/start_time&gt;
-        &lt;end_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/end_time&gt;
-        &lt;special_prompt&gt;&lt;![CDATA[忌辛辣]]&gt;&lt;/special_prompt&gt;
-        &lt;skin_test_flag&gt;&lt;![CDATA[0]]&gt;&lt;/skin_test_flag&gt;
-        &lt;skin_test_result&gt;&lt;![CDATA[皮试结果]]&gt;&lt;/skin_test_result&gt;
-        &lt;skin_test_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/skin_test_time&gt;
-        &lt;drug_source&gt;&lt;![CDATA[1]]&gt;&lt;/drug_source&gt;
-        &lt;drug_return_flag&gt;&lt;![CDATA[0]]&gt;&lt;/drug_return_flag&gt;
-        &lt;ouvas_flag&gt;&lt;![CDATA[1]]&gt;&lt;/ouvas_flag&gt;
-        &lt;infusion_speed&gt;&lt;![CDATA[20滴/分钟]]&gt;&lt;/infusion_speed&gt;
-        &lt;limit_time&gt;&lt;![CDATA[限用时间]]&gt;&lt;/limit_time&gt;
-        &lt;therapeutic_regimen&gt;&lt;![CDATA[用药方案]]&gt;&lt;/therapeutic_regimen&gt;
-        &lt;medicare_type&gt;&lt;![CDATA[1]]&gt;&lt;/medicare_type&gt;
-      &lt;/opt_prescription_item&gt;
-      &lt;opt_prescription_item&gt;
-        &lt;recipe_item_id&gt;&lt;![CDATA[r2_1560149666000]]&gt;&lt;/recipe_item_id&gt;
-        &lt;recipe_id&gt;&lt;![CDATA[r_1560149666000]]&gt;&lt;/recipe_id&gt;
-        &lt;drug_purpose&gt;&lt;![CDATA[科室领药]]&gt;&lt;/drug_purpose&gt;
-        &lt;group_no&gt;&lt;![CDATA[334510]]&gt;&lt;/group_no&gt;
-        &lt;drug_id&gt;&lt;![CDATA[00256800]]&gt;&lt;/drug_id&gt;
-        &lt;drug_name&gt;&lt;![CDATA[ω-3鱼油脂肪乳注射液(尤文)]]&gt;&lt;/drug_name&gt;
-        &lt;count_unit&gt;&lt;![CDATA[6]]&gt;&lt;/count_unit&gt;
-        &lt;pack_unit&gt;&lt;![CDATA[盒]]&gt;&lt;/pack_unit&gt;
-        &lt;manufacturer_id&gt;&lt;![CDATA[12]]&gt;&lt;/manufacturer_id&gt;
-        &lt;manufacturer_name&gt;&lt;![CDATA[西安杨森制药有限公司]]&gt;&lt;/manufacturer_name&gt;
-        &lt;drug_dose&gt;&lt;![CDATA[0.25g]]&gt;&lt;/drug_dose&gt;
-        &lt;drug_admin_route_name&gt;&lt;![CDATA[口服]]&gt;&lt;/drug_admin_route_name&gt;
-        &lt;drug_using_freq&gt;&lt;![CDATA[bid]]&gt;&lt;/drug_using_freq&gt;
-        &lt;drug_using_time_point&gt;&lt;![CDATA[餐前]]&gt;&lt;/drug_using_time_point&gt;
-        &lt;drug_using_aim&gt;&lt;![CDATA[治疗]]&gt;&lt;/drug_using_aim&gt;
-        &lt;drug_using_area&gt;&lt;![CDATA[全身]]&gt;&lt;/drug_using_area&gt;
-        &lt;duration&gt;&lt;![CDATA[3天]]&gt;&lt;/duration&gt;
-        &lt;preparation&gt;&lt;![CDATA[普通片]]&gt;&lt;/preparation&gt;
-        &lt;specification&gt;&lt;![CDATA[0.1g]]&gt;&lt;/specification&gt;
-        &lt;unit_price&gt;&lt;![CDATA[6.30]]&gt;&lt;/unit_price&gt;
-        &lt;despensing_num&gt;&lt;![CDATA[3]]&gt;&lt;/despensing_num&gt;
-        &lt;fee_total&gt;&lt;![CDATA[6.30]]&gt;&lt;/fee_total&gt;
-        &lt;start_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/start_time&gt;
-        &lt;end_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/end_time&gt;
-        &lt;special_prompt&gt;&lt;![CDATA[忌辛辣]]&gt;&lt;/special_prompt&gt;
-        &lt;skin_test_flag&gt;&lt;![CDATA[0]]&gt;&lt;/skin_test_flag&gt;
-        &lt;skin_test_result&gt;&lt;![CDATA[皮试结果]]&gt;&lt;/skin_test_result&gt;
-        &lt;skin_test_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/skin_test_time&gt;
-        &lt;drug_source&gt;&lt;![CDATA[1]]&gt;&lt;/drug_source&gt;
-        &lt;drug_return_flag&gt;&lt;![CDATA[0]]&gt;&lt;/drug_return_flag&gt;
-        &lt;ouvas_flag&gt;&lt;![CDATA[0]]&gt;&lt;/ouvas_flag&gt;
-      &lt;/opt_prescription_item&gt;
-      &lt;opt_prescription_item&gt;
-        &lt;recipe_item_id&gt;&lt;![CDATA[r3_1560149666000]]&gt;&lt;/recipe_item_id&gt;
-        &lt;recipe_id&gt;&lt;![CDATA[r_1560149666000]]&gt;&lt;/recipe_id&gt;
-        &lt;drug_purpose&gt;&lt;![CDATA[科室领药]]&gt;&lt;/drug_purpose&gt;
-        &lt;group_no&gt;&lt;![CDATA[334510_1]]&gt;&lt;/group_no&gt;
-        &lt;drug_id&gt;&lt;![CDATA[00322300]]&gt;&lt;/drug_id&gt;
-        &lt;drug_name&gt;&lt;![CDATA[卡贝缩宫素注射液]]&gt;&lt;/drug_name&gt;
-        &lt;count_unit&gt;&lt;![CDATA[6]]&gt;&lt;/count_unit&gt;
-        &lt;pack_unit&gt;&lt;![CDATA[盒]]&gt;&lt;/pack_unit&gt;
-        &lt;manufacturer_id&gt;&lt;![CDATA[12]]&gt;&lt;/manufacturer_id&gt;
-        &lt;manufacturer_name&gt;&lt;![CDATA[西安杨森制药有限公司]]&gt;&lt;/manufacturer_name&gt;
-        &lt;drug_dose&gt;&lt;![CDATA[0.25g]]&gt;&lt;/drug_dose&gt;
-        &lt;drug_admin_route_name&gt;&lt;![CDATA[口服]]&gt;&lt;/drug_admin_route_name&gt;
-        &lt;drug_using_freq&gt;&lt;![CDATA[bid]]&gt;&lt;/drug_using_freq&gt;
-        &lt;drug_using_time_point&gt;&lt;![CDATA[餐前]]&gt;&lt;/drug_using_time_point&gt;
-        &lt;drug_using_aim&gt;&lt;![CDATA[治疗]]&gt;&lt;/drug_using_aim&gt;
-        &lt;drug_using_area&gt;&lt;![CDATA[全身]]&gt;&lt;/drug_using_area&gt;
-        &lt;duration&gt;&lt;![CDATA[3天]]&gt;&lt;/duration&gt;
-        &lt;preparation&gt;&lt;![CDATA[普通片]]&gt;&lt;/preparation&gt;
-        &lt;specification&gt;&lt;![CDATA[0.1g]]&gt;&lt;/specification&gt;
-        &lt;unit_price&gt;&lt;![CDATA[6.30]]&gt;&lt;/unit_price&gt;
-        &lt;despensing_num&gt;&lt;![CDATA[3]]&gt;&lt;/despensing_num&gt;
-        &lt;fee_total&gt;&lt;![CDATA[6.30]]&gt;&lt;/fee_total&gt;
-        &lt;start_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/start_time&gt;
-        &lt;end_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/end_time&gt;
-        &lt;special_prompt&gt;&lt;![CDATA[忌辛辣]]&gt;&lt;/special_prompt&gt;
-        &lt;skin_test_flag&gt;&lt;![CDATA[0]]&gt;&lt;/skin_test_flag&gt;
-        &lt;skin_test_result&gt;&lt;![CDATA[皮试结果]]&gt;&lt;/skin_test_result&gt;
-        &lt;skin_test_time&gt;&lt;![CDATA[2019-06-09 14:54:26]]&gt;&lt;/skin_test_time&gt;
-        &lt;drug_source&gt;&lt;![CDATA[1]]&gt;&lt;/drug_source&gt;
-        &lt;drug_return_flag&gt;&lt;![CDATA[0]]&gt;&lt;/drug_return_flag&gt;
-        &lt;ouvas_flag&gt;&lt;![CDATA[0]]&gt;&lt;/ouvas_flag&gt;
-      &lt;/opt_prescription_item&gt;
-    &lt;/opt_prescription&gt;
-  &lt;/opt_prescriptions&gt;
-&lt;/root&gt;
-
-{'code': '200', 'message': 'OK', 'data': {'optRecipeList': [{'infos': [{'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003087', 'drugName': 'EW复方氨基酸注射液(安平10％)', 'errorInfo': '无', 'advice': '从氨基酸的利用考虑，在可配伍性得到保证的前提下，本品可与葡萄糖注射液、脂肪乳注射液及其它营养要素按照适当的比例混合后经中心或周围静脉连续输注。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2045527003189214217', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '配伍', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003087', 'drugName': 'EW复方氨基酸注射液(安平10％)', 'errorInfo': '儿童用药安全性尚不明确。', 'advice': '儿童谨慎使用。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '3', 'messageId': '2043867526643842056', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '儿童青少年', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003087', 'drugName': 'EW复方氨基酸注射液(安平10％)', 'errorInfo': '高危药品统计', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2258636152289360904', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '高危药品', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003087', 'drugName': 'EW复方氨基酸注射液(安平10％)', 'errorInfo': '输入错误,怀孕年龄太小。', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347342', 'type': 'ANALYSIS', 'analysisType': '规范性分析', 'analysisResultType': '不规范', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003087', 'drugName': 'EW复方氨基酸注射液(安平10％)', 'errorInfo': '输入错误,怀孕年龄太小。', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2177399527522171906', 'type': 'ANALYSIS', 'analysisType': '规范性分析', 'analysisResultType': '怀孕年龄输入有误', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}], 'optRecipe': {'id': 9306, 'originalId': None, 'zoneId': 1, 'eventNo': '1560148410526', 'patientId': '1560148410526', 'keyDate': 1560148331020, 'recipeId': 'r_1560148410526', 'recipeNo': 'r_1560148410526', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '9140001', 'deptName': '放射科', 'recipeDocId': 'admin', 'recipeDocName': '系统管理员', 'recipeDocTitle': '231', 'recipeTime': 1560148410000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 85134, 'lookTime': True}, {'infos': [{'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '给药途径不合适。', 'advice': '本品宜静脉推注、静脉滴注、微泵注射和输液泵滴注给药。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1498024989230', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '给药途径', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '中成药使用超常人次分析。', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347345', 'type': 'ANALYSIS', 'analysisType': '超常性分析', 'analysisResultType': '中成药超常', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '中药注射剂使用超常人次分析。', 'advice': '', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347351', 'type': 'ANALYSIS', 'analysisType': '超常性分析', 'analysisResultType': '中药注射剂超常', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '高危药品统计', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2258636152289360904', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '高危药品', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '输入错误,男性不会怀孕。', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347336', 'type': 'ANALYSIS', 'analysisType': '规范性分析', 'analysisResultType': '不规范', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '抗菌药物联合用药不宜超过三种。', 'advice': '请调整用药。', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347353', 'type': 'ANALYSIS', 'analysisType': '超常性分析', 'analysisResultType': '抗菌药物应用超常', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '输入错误,男性不会怀孕。', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2177399527530560518', 'type': 'ANALYSIS', 'analysisType': '规范性分析', 'analysisResultType': '男性怀孕', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00322300', 'drugName': '卡贝缩宫素注射液', 'errorInfo': '给药途径不合适。', 'advice': '本品宜静脉推注给药。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1517204294406', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '给药途径', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00322300', 'drugName': '卡贝缩宫素注射液', 'errorInfo': '本品用于选择性硬膜外或腰麻下剖腹产术后，以预防子宫收缩乏力和产后出血。', 'advice': '男性患者禁止使用。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1517204109883', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '禁忌症', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00322300', 'drugName': '卡贝缩宫素注射液', 'errorInfo': '每次给药剂量不合适。 250.0mg。', 'advice': '14-80岁患者每次剂量不得超过说明书推荐的常规剂量上限的2倍。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2270928174509456391', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '用法用量', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00256800', 'drugName': 'ω-3鱼油脂肪乳注射液(尤文)', 'errorInfo': 'ω-3鱼油脂肪乳注射液限中重度炎症及感染患者。本政策自2018年4月1日起执行', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2227500035725065236', 'type': 'MANAGE', 'analysisType': '用药提醒', 'analysisResultType': '', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00256800', 'drugName': 'ω-3鱼油脂肪乳注射液(尤文)', 'errorInfo': '无', 'advice': '本品应与其它脂肪乳同时使用。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2045378378345741318', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '配伍', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00256800', 'drugName': 'ω-3鱼油脂肪乳注射液(尤文)', 'errorInfo': '给药途径不合适。', 'advice': '本品宜静脉滴注、微泵推注或输液泵滴注给药。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1498095998360', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '给药途径', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00256800', 'drugName': 'ω-3鱼油脂肪乳注射液(尤文)', 'errorInfo': '每天给药剂量不合适。 0.05ml。', 'advice': '本品宜每日按体重一日输注本品1ml-2ml/kg。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '3', 'messageId': '1512023564580', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '用法用量', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}], 'optRecipe': {'id': 9308, 'originalId': None, 'zoneId': 1, 'eventNo': '1560149529000', 'patientId': '1560149529000', 'keyDate': 1560149449674, 'recipeId': 'r_1560149529000', 'recipeNo': 'r_1560149529000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560063129000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 86253, 'lookTime': True}, {'infos': [{'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '给药途径不合适。', 'advice': '本品宜静脉推注、静脉滴注、微泵注射和输液泵滴注给药。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1498024989230', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '给药途径', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '中成药使用超常人次分析。', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347345', 'type': 'ANALYSIS', 'analysisType': '超常性分析', 'analysisResultType': '中成药超常', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '中药注射剂使用超常人次分析。', 'advice': '', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347351', 'type': 'ANALYSIS', 'analysisType': '超常性分析', 'analysisResultType': '中药注射剂超常', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '高危药品统计', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2258636152289360904', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '高危药品', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '输入错误,男性不会怀孕。', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347336', 'type': 'ANALYSIS', 'analysisType': '规范性分析', 'analysisResultType': '不规范', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '抗菌药物联合用药不宜超过三种。', 'advice': '请调整用药。', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347353', 'type': 'ANALYSIS', 'analysisType': '超常性分析', 'analysisResultType': '抗菌药物应用超常', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00234300', 'drugName': '盐酸维拉帕米注射液', 'errorInfo': '输入错误,男性不会怀孕。', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2177399527530560518', 'type': 'ANALYSIS', 'analysisType': '规范性分析', 'analysisResultType': '男性怀孕', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00322300', 'drugName': '卡贝缩宫素注射液', 'errorInfo': '给药途径不合适。', 'advice': '本品宜静脉推注给药。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1517204294406', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '给药途径', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00322300', 'drugName': '卡贝缩宫素注射液', 'errorInfo': '本品用于选择性硬膜外或腰麻下剖腹产术后，以预防子宫收缩乏力和产后出血。', 'advice': '男性患者禁止使用。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1517204109883', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '禁忌症', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00322300', 'drugName': '卡贝缩宫素注射液', 'errorInfo': '每次给药剂量不合适。 250.0mg。', 'advice': '14-80岁患者每次剂量不得超过说明书推荐的常规剂量上限的2倍。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2270928174509456391', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '用法用量', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00256800', 'drugName': 'ω-3鱼油脂肪乳注射液(尤文)', 'errorInfo': 'ω-3鱼油脂肪乳注射液限中重度炎症及感染患者。本政策自2018年4月1日起执行', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2227500035725065236', 'type': 'MANAGE', 'analysisType': '用药提醒', 'analysisResultType': '', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00256800', 'drugName': 'ω-3鱼油脂肪乳注射液(尤文)', 'errorInfo': '无', 'advice': '本品应与其它脂肪乳同时使用。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2045378378345741318', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '配伍', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00256800', 'drugName': 'ω-3鱼油脂肪乳注射液(尤文)', 'errorInfo': '给药途径不合适。', 'advice': '本品宜静脉滴注、微泵推注或输液泵滴注给药。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1498095998360', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '给药途径', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '00256800', 'drugName': 'ω-3鱼油脂肪乳注射液(尤文)', 'errorInfo': '每天给药剂量不合适。 0.05ml。', 'advice': '本品宜每日按体重一日输注本品1ml-2ml/kg。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '3', 'messageId': '1512023564580', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '用法用量', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}], 'optRecipe': {'id': 9309, 'originalId': None, 'zoneId': 1, 'eventNo': '1560149666000', 'patientId': '1560149666000', 'keyDate': 1560149587345, 'recipeId': 'r_1560149666000', 'recipeNo': 'r_1560149666000', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '914000133', 'deptName': '测试门诊', 'recipeDocId': '09', 'recipeDocName': '医生王', 'recipeDocTitle': '231', 'recipeTime': 1560063266000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': None, 'pharmacistRelaName': None, 'pharmacistId': None, 'inTime': 0, 'lockStatus': None, 'selfLockStatus': None, 'restOfTime': 86390, 'lookTime': True}, {'infos': [{'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003390', 'drugName': '阿司匹林肠溶片', 'errorInfo': '每次给药剂量不合适。 2.0g。', 'advice': '14岁以下儿童患者每次剂量不得超过说明书推荐的常规剂量上限的1倍。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2270928174501067790', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '用法用量', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003390', 'drugName': '阿司匹林肠溶片', 'errorInfo': '每天给药剂量不合适。 4.0g。', 'advice': '14岁以下儿童患者每天剂量不得超过说明书推荐的常规剂量上限的1倍。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2270928174509456385', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '用法用量', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003390', 'drugName': '阿司匹林肠溶片', 'errorInfo': '每天给药剂量不合适。 4.0g。', 'advice': '本品无儿童推荐剂量，且所开剂量已超成人每天剂量上限300mg。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1515141586879', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '用法用量', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003390', 'drugName': '阿司匹林肠溶片', 'errorInfo': '给药时机不合适。', 'advice': '本品不可空腹服用。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '1515141446888', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '给药时机', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003390', 'drugName': '阿司匹林肠溶片', 'errorInfo': '给药时机不合适。', 'advice': '本品宜在饭后用温水送服。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '4', 'messageId': '1450769652274', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '给药时机', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003390', 'drugName': '阿司匹林肠溶片', 'errorInfo': '尚无儿童安全性用药经验。', 'advice': '儿童和青少年服用阿司匹林肠溶片可能会发生少见的但危及生命的Reye综合症。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '3', 'messageId': '1504939503855', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '儿童青少年', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003390', 'drugName': '阿司匹林肠溶片', 'errorInfo': '输入错误,怀孕年龄太小。', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347342', 'type': 'ANALYSIS', 'analysisType': '规范性分析', 'analysisResultType': '不规范', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '003390', 'drugName': '阿司匹林肠溶片', 'errorInfo': '输入错误,怀孕年龄太小。', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2177399527522171906', 'type': 'ANALYSIS', 'analysisType': '规范性分析', 'analysisResultType': '怀孕年龄输入有误', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '注射用伏立康唑限重症真菌感染 。本政策自2018年4月1日起执行', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2227500035733453861', 'type': 'MANAGE', 'analysisType': '用药提醒', 'analysisResultType': '', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '本品为注射用无菌粉末，需加溶媒溶解、稀释后给药。', 'advice': '选用合适的溶媒。', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '5', 'messageId': '2236083787057331204', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '配伍', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '本品适用于：侵袭性曲霉菌；球孢子菌病脑膜炎；芽生菌(中枢神经系统疾病)；对氟康唑耐药的念珠菌引起的严重侵袭性感染；赛多孢菌属和链孢霉属、足放线病菌属引起严重感染等。', 'advice': '不建议超适应症使用。', 'source': '说明书,热病-桑福德抗微生物治疗指南,抗菌药物临床应用指导原则(2015年版)', 'rt': None, 'sourceId': '', 'severity': '4', 'messageId': '2181718556005104641', 'type': 'PRODUCT', 'analysisType': '适宜性分析', 'analysisResultType': '适应症', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': 'CFDA药品不良反应信息通报：英国警示伏立康唑的肝毒性、光毒性和鳞状细胞癌风险。', 'advice': '请谨慎使用，建议用药期间严密监测相关症状，定期检查肝功能，避免日晒。', 'source': '药品不良反应信息通报', 'rt': None, 'sourceId': '', 'severity': '3', 'messageId': '2083891074422537225', 'type': 'PRODUCT', 'analysisType': '用药提醒', 'analysisResultType': '不良反应提示', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '抗菌药物统计', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347335', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '抗菌药物', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '注射药物统计', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347339', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '注射药物', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '特殊使用级抗菌药物统计。', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2207176020078885897', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '特殊级抗菌药物使用', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '特殊使用级抗菌药物使用情况．', 'advice': '', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347347', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '特殊级抗菌药物使用', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '抗菌药物静脉给药。', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347340', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '静脉给药抗菌药物', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '注射药物统计', 'advice': '', 'source': '说明书', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2210081897282796552', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '注射药物', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '注射剂型抗菌药物统计。', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2250433611575589892', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '注射剂型抗菌药物', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '输液药物的统计。', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347349', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '输液药物', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '抗菌药物输液的统计。', 'advice': '', 'source': '', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347334', 'type': 'ANALYSIS', 'analysisType': '自定义分析', 'analysisResultType': '抗菌药物输液', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}, {'infoId': '', 'orderId': '', 'orderItemId': None, 'orderType': '', 'pivasFlag': '', 'recipeItemId': '', 'groupNo': None, 'drugId': '002623', 'drugName': '注射用伏立康唑)', 'errorInfo': '未明确有感染，不应使用抗菌药物.', 'advice': '明确诊断后再使用抗菌药物', 'source': '处方点评管理办法', 'rt': None, 'sourceId': '', 'severity': '0', 'messageId': '2227500032277347341', 'type': 'ANALYSIS', 'analysisType': '超常性分析', 'analysisResultType': '抗菌药物诊断超常', 'docId': None, 'docName': None, 'messageAccording': None, 'infoType': None}], 'optRecipe': {'id': 9307, 'originalId': None, 'zoneId': 1, 'eventNo': '1560148415514', 'patientId': '1560148410526', 'keyDate': 1560148336004, 'recipeId': 'r_1560148415514', 'recipeNo': 'r_1560148415514', 'recipeSource': '急诊', 'recipeCategory': '普通处方', 'diagnoseName': None, 'recipeType': '西药方', 'deptId': '9140001', 'deptName': '放射科', 'recipeDocId': 'B073', 'recipeDocName': '庄晓明', 'recipeDocTitle': '231', 'recipeTime': 1560148415000, 'herbUnitPrice': 50.0, 'herbPacketCount': '20', 'herbAdminrouteName': None, 'herbDailyDose': None, 'herbTreatDuration': '4天/次', 'herbFormulationName': None, 'iscream': '0', 'recipeFeeTotal': 44.55, 'originalRecipeId': '', 'recipeStatus': '0', 'urgentFlag': '1', 'auditMarkStatus': None, 'auditStatus': None}, 'pharmacistName': 'ipharmacarextss', 'pharmacistRelaName': '实施帐号', 'pharmacistId': '-300', 'inTime': 0, 'lockStatus': 1, 'selfLockStatus': None, 'restOfTime': 85439, 'lookTime': True}], 'totalTaskNum': 4, 'taskNumList': [{'zoneId': 1, 'deptId': '9140001', 'deptName': '放射科', 'zoneName': None, 'taskNum': 2}, {'zoneId': 1, 'deptId': '914000133', 'deptName': '测试门诊', 'zoneName': None, 'taskNum': 2}]}}
-
-
-9309
-
+9322
 结束执行用例...
 
 
@@ -473,8 +229,6 @@ E:\myproj\auditcenter_apitest\config\body_xml_3.txt
     <pre>
     
 pt2_2: 开始执行用例...
-http://10.1.1.89:9999/auditcenter/api/v1/opt/recipeInfo/
-{'timestamp': 1560149597410, 'status': 404, 'error': 'Not Found', 'message': 'No message available', 'path': '/api/v1/opt/recipeInfo/'}
 结束执行用例...
 
 
@@ -486,10 +240,10 @@ http://10.1.1.89:9999/auditcenter/api/v1/opt/recipeInfo/
 <tr id='total_row' class="text-center active">
     <td>总计</td>
     <td>3</td>
-    <td>2</td>
-    <td>1</td>
+    <td>3</td>
     <td>0</td>
-    <td>通过率：66.67%</td>
+    <td>0</td>
+    <td>通过率：100.00%</td>
 </tr>
 </table>
 

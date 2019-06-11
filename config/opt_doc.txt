@@ -1,0 +1,15 @@
+<root>
+  <base>
+    <hospital_code><![CDATA[H0003]]></hospital_code>
+    <patient_id><![CDATA[{{ts}}]]></patient_id>
+    <event_no><![CDATA[{{ts}}]]></event_no>
+    <source><![CDATA[门诊]]></source>
+  </base>
+  <doc_id><![CDATA[09]]></doc_id>
+  <doc_name><![CDATA[医生王]]></doc_name>
+  <feed_back>
+    <recipe_id><![CDATA[r_{{ts}}]]></recipe_id>
+    <message><![CDATA[坚持使用该处方，不需要修改]]></message>
+    <status><![CDATA[1]]></status>
+  </feed_back>
+</root>

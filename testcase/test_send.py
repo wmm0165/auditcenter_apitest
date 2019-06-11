@@ -53,7 +53,6 @@ class TestSend(unittest.TestCase):
         # 查询待审列表，获取引擎id（注意：右侧待审任务只能展示10条，所以10条之外的数据查询不到）
         param = {}
         res2 = self.tem.post_json('http://10.1.1.89:9999/auditcenter/api/v1/opt/selNotAuditOptList', param)
-        print(res2)
         self.length = len(res2['data']['optRecipeList'])
         for i in range(0, self.length):
             engine_key = ''
@@ -69,9 +68,8 @@ class TestSend(unittest.TestCase):
     def test_query(self):
         global engine
         url = 'http://10.1.1.89:9999/auditcenter/api/v1/opt/recipeInfo/' + str(engine)
-        print(url)
         res = self.tem.get(url)
-        print(res)
+
 
 
 if __name__ == '__main__':
