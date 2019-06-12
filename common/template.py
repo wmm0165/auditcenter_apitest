@@ -32,7 +32,7 @@ class Template:
         self.session.get(url=start_sf_url)  # 开始审方
         group_no = random.randint(1, 1000000)
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        now_ts = int(time.mktime(time.strptime(now, "%Y-%m-%d %H:%M:%S"))) * 1000
+        self.now_ts = int(time.mktime(time.strptime(now, "%Y-%m-%d %H:%M:%S"))) * 1000
         yest = (datetime.datetime.now() + datetime.timedelta(days=-1)).strftime("%Y-%m-%d %H:%M:%S")
         yest_ts = int(time.mktime(time.strptime(yest, "%Y-%m-%d %H:%M:%S"))) * 1000
         yest_raw = (datetime.datetime.now() + datetime.timedelta(days=-1))
@@ -47,7 +47,7 @@ class Template:
         yest_behind_onehour = (yest_raw + datetime.timedelta(hours=+1)).strftime("%Y-%m-%d %H:%M:%S")
         yest_behind_onehour_ts = int(time.mktime(time.strptime(yest_front_onehour, "%Y-%m-%d %H:%M:%S"))) * 1000
 
-        self.change_data = {"{{ts}}": str(now_ts),
+        self.change_data = {"{{ts}}": str(self.now_ts),
                             "{{t}}": str(yest_ts),
                             "{{d}}": str(yest),
                             "{{tf4}}": str(yest_front_fourhour_ts),
@@ -55,7 +55,12 @@ class Template:
                             "{{tb1}}": str(yest_behind_onehour_ts),
                             "{{db1}}": str(yest_behind_onehour),
                             "{{gp}}": str(group_no),
-                            "{{df6}}": str(yest_front_fourhour)}
+                            "{{df6}}": str(yest_front_fourhour),
+                            "{{df3}}": str(yest_front_fourhour),
+                            "{{df2}}": str(yest_front_fourhour),
+                            "{{df1}}": str(yest_front_fourhour),
+                            "{{dt}}": str(yest_front_fourhour)
+                            }
 
     # def get_session(self):
     #     return self.session
@@ -69,11 +74,12 @@ class Template:
     def get(self, url):
         return self.session.get(url).json()
 
-    def send_data(self, dir_name,xml_name, **change):
+    def send_data(self, dir_name, xml_name, **change):
         # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
-        xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name,xml_name)
+        xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
         send_data_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/auditcenter'
         headers = {"Content-Type": "text/plain"}
+        print(xml_path)
         with open(xml_path, encoding="utf-8") as fp:
             body = fp.read()
         ss = body
@@ -82,19 +88,18 @@ class Template:
         print(ss)
         return self.session.post(url=send_data_url, data=ss.encode("utf-8"), headers=headers)
 
-
-
-    def get_opt_engineid(self, xml_name):
-        self.send_data(xml_name, **self.change_data)
+    # 查询待审列表，获取引擎id（注意：右侧待审任务只能展示10条，所以10条之外的数据查询不到）
+    def get_opt_engineid(self, dir_name, xml_name):
+        self.send_data(dir_name, xml_name, **self.change_data)
         time.sleep(5)
         num = re.findall('\d+', xml_name)  # 获取文件名中的数字
         recipeno = 'r' + ''.join(num) + '_' + self.change_data['{{ts}}']
-        self.send_data(xml_name, **self.change_data)
         param = {
             "recipeNo": recipeno
         }
         url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '查询待审门诊任务列表')
         res = self.post_json(url, param)
+        print(res)
         print(res['data']['optRecipeList'][0]['optRecipe']['id'])
         return res['data']['optRecipeList'][0]['optRecipe']['id']
 

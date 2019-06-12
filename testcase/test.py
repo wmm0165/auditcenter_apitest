@@ -5,10 +5,7 @@ from config.read_config import ReadConfig
 from common.template import Template
 tem = Template()
 cof = ReadConfig()
-url = cof.get('login', 'address') + '/auditcenter' + cof.get('api', '处方详情审核通过')
-param = {
-    "optRecipeId": "99019",
-    "auditResult": ""}
+# 获取引擎id
+engine = tem.get_opt_engineid('opt_patient', 'prescribe_med_1.txt')
+# tem.send_data('opt_patient', 'prescribe_med_1.txt')
 
-res = tem.post_json(url,param)
-print(res)
