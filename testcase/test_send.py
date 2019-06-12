@@ -46,7 +46,7 @@ class TestSend(unittest.TestCase):
 
     def test_get_engineid(self):
         # 发送数据
-        self.tem.send_data('body_xml_1.txt', **TestSend.change)
+        self.tem.send_data('body_xml_1.xml', **TestSend.change)
         self.tem.send_data('body_xml_2.txt', **TestSend.change)
         self.tem.send_data('body_xml_3.txt', **TestSend.change)
         time.sleep(10)
