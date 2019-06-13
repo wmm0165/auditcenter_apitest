@@ -31,21 +31,21 @@ class Template:
         start_sf_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/startAuditWork'  # 获取开始审方url
         self.session.get(url=start_sf_url)  # 开始审方
         group_no = random.randint(1, 1000000)
-        now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.now_ts = int(time.mktime(time.strptime(now, "%Y-%m-%d %H:%M:%S"))) * 1000
+        self.now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.now_ts = int(time.mktime(time.strptime(self.now, "%Y-%m-%d %H:%M:%S"))) * 1000
         yest = (datetime.datetime.now() + datetime.timedelta(days=-1)).strftime("%Y-%m-%d %H:%M:%S")
         yest_ts = int(time.mktime(time.strptime(yest, "%Y-%m-%d %H:%M:%S"))) * 1000
         yest_raw = (datetime.datetime.now() + datetime.timedelta(days=-1))
-        yest_front_onehour = (yest_raw + datetime.timedelta(hours=-1)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_front_onehour_ts = int(time.mktime(time.strptime(yest_front_onehour, "%Y-%m-%d %H:%M:%S"))) * 1000
-        yest_front_twohour = (yest_raw + datetime.timedelta(hours=-2)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_front_twohour_ts = int(time.mktime(time.strptime(yest_front_twohour, "%Y-%m-%d %H:%M:%S"))) * 1000
-        yest_front_threehour = (yest_raw + datetime.timedelta(hours=-3)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_front_threehour_ts = int(time.mktime(time.strptime(yest_front_threehour, "%Y-%m-%d %H:%M:%S"))) * 1000
+        self.yest_front_onehour = (yest_raw + datetime.timedelta(hours=-1)).strftime("%Y-%m-%d %H:%M:%S")
+        yest_front_onehour_ts = int(time.mktime(time.strptime(self.yest_front_onehour, "%Y-%m-%d %H:%M:%S"))) * 1000
+        self.yest_front_twohour = (yest_raw + datetime.timedelta(hours=-2)).strftime("%Y-%m-%d %H:%M:%S")
+        yest_front_twohour_ts = int(time.mktime(time.strptime(self.yest_front_twohour, "%Y-%m-%d %H:%M:%S"))) * 1000
+        self.yest_front_threehour = (yest_raw + datetime.timedelta(hours=-3)).strftime("%Y-%m-%d %H:%M:%S")
+        yest_front_threehour_ts = int(time.mktime(time.strptime(self.yest_front_threehour, "%Y-%m-%d %H:%M:%S"))) * 1000
         yest_front_fourhour = (yest_raw + datetime.timedelta(hours=-4)).strftime("%Y-%m-%d %H:%M:%S")
         yest_front_fourhour_ts = int(time.mktime(time.strptime(yest_front_fourhour, "%Y-%m-%d %H:%M:%S"))) * 1000
         yest_behind_onehour = (yest_raw + datetime.timedelta(hours=+1)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_behind_onehour_ts = int(time.mktime(time.strptime(yest_front_onehour, "%Y-%m-%d %H:%M:%S"))) * 1000
+        yest_behind_onehour_ts = int(time.mktime(time.strptime(self.yest_front_onehour, "%Y-%m-%d %H:%M:%S"))) * 1000
 
         self.change_data = {"{{ts}}": str(self.now_ts),
                             "{{t}}": str(yest_ts),
@@ -56,10 +56,10 @@ class Template:
                             "{{db1}}": str(yest_behind_onehour),
                             "{{gp}}": str(group_no),
                             "{{df6}}": str(yest_front_fourhour),
-                            "{{df3}}": str(yest_front_fourhour),
-                            "{{df2}}": str(yest_front_fourhour),
-                            "{{df1}}": str(yest_front_fourhour),
-                            "{{dt}}": str(yest_front_fourhour)
+                            "{{df3}}": str(self.yest_front_threehour),
+                            "{{df2}}": str(self.yest_front_twohour),
+                            "{{df1}}": str(self.yest_front_onehour),
+                            "{{dt}}": str(self.now)
                             }
 
     # def get_session(self):
@@ -99,8 +99,8 @@ class Template:
         }
         url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '查询待审门诊任务列表')
         res = self.post_json(url, param)
-        print(res)
-        print(res['data']['optRecipeList'][0]['optRecipe']['id'])
+        # print(res)
+        # print(res['data']['optRecipeList'][0]['optRecipe']['id'])
         return res['data']['optRecipeList'][0]['optRecipe']['id']
 
     def opt_audit(self, xml_name, audit_type):

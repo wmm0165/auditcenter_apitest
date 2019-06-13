@@ -1,0 +1,17 @@
+<root>
+  <base>
+    <hospital_code><![CDATA[H0003]]></hospital_code>
+    <event_no><![CDATA[{{ts}}]]></event_no>
+    <patient_id><![CDATA[{{ts}}_1]]></patient_id>
+    <source><![CDATA[急诊]]></source>
+  </base>
+  <opt_allergies>
+    <opt_allergy>
+      <allergy_id><![CDATA[{{ts}}_3]]></allergy_id>
+      <allergy_drug><![CDATA[过敏3]]></allergy_drug>
+      <anaphylaxis><![CDATA[过敏性休克]]></anaphylaxis>
+      <allergy_status><![CDATA[0]]></allergy_status>
+      <record_time><![CDATA[{{df2}}]]></record_time>
+    </opt_allergy>
+  </opt_allergies>
+</root>
