@@ -31,6 +31,7 @@ class Template:
         start_sf_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/startAuditWork'  # 获取开始审方url
         self.session.get(url=start_sf_url)  # 开始审方
         group_no = random.randint(1, 1000000)
+        cgroup_no = random.randint(1, 1000000)
         self.now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.now_ts = int(time.mktime(time.strptime(self.now, "%Y-%m-%d %H:%M:%S"))) * 1000
         yest = (datetime.datetime.now() + datetime.timedelta(days=-1)).strftime("%Y-%m-%d %H:%M:%S")
@@ -55,6 +56,7 @@ class Template:
                             "{{tb1}}": str(yest_behind_onehour_ts),
                             "{{db1}}": str(yest_behind_onehour),
                             "{{gp}}": str(group_no),
+                            "{{cgp}}": str(cgroup_no),
                             "{{df6}}": str(yest_front_fourhour),
                             "{{df3}}": str(self.yest_front_threehour),
                             "{{df2}}": str(self.yest_front_twohour),
@@ -103,8 +105,25 @@ class Template:
         # print(res['data']['optRecipeList'][0]['optRecipe']['id'])
         return res['data']['optRecipeList'][0]['optRecipe']['id']
 
-    def opt_audit(self, xml_name, audit_type):
-        engineid = self.get_opt_engineid(xml_name)
+    # 根据patient_id查询待审列表获取引擎id，count=2时，取该患者第二条数据的engineid
+    def get_ipt_engineid(self, dir_name, xml_name, count):
+        self.send_data(dir_name, xml_name, **self.change_data)
+        time.sleep(5)
+        param = {
+            "patientId": self.change_data['{{ts}}']
+        }
+        url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '查询待审住院任务列表')
+        res = self.post_json(url, param)
+        print(res)
+        engineid = ''
+        if count == 1:
+            engineid = res['data']['engineInfos'][0]['id']
+        elif count == 2:
+            engineid = res['data']['engineInfos'][1]['id']
+        return engineid
+
+    def opt_audit(self, dir_name,xml_name, audit_type):
+        engineid = self.get_opt_engineid(dir_name,xml_name)
         url = ''
         param = {}
 
@@ -132,10 +151,21 @@ class Template:
             }
         self.post_json(url, param)
 
-    # def doc_audit(self):
+    def ipt_audit(self):
+        param = {
+            "groupOrderList": [{
+                "auditBoList": [],
+                "groupNo": "462",
+                "auditInfo": "必须修改",
+                "auditStatus": 0,
+                "engineId": "126049",
+                "orderType": 1
+            }]
+        }
 
 
 if __name__ == '__main__':
     t = Template()
-    t.opt_audit('body_xml_2.txt', '2')
-    # t.get_opt_engineid('body_xml_2.txt')
+    t.send_data('ipt_med', 'ipt_med1.txt', **t.change_data)
+    eid = t.get_ipt_engineid('ipt_med', 'ipt_med2.txt', 2)
+    print(eid)
