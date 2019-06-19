@@ -90,6 +90,19 @@ class Template:
         print(ss)
         return self.session.post(url=send_data_url, data=ss.encode("utf-8"), headers=headers)
 
+    def doc(self, dir_name, xml_name, **change):
+        xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '医生双签')
+        headers = {"Content-Type": "text/plain"}
+        print(xml_path)
+        with open(xml_path, encoding="utf-8") as fp:
+            body = fp.read()
+        ss = body
+        for k in change:
+            ss = ss.replace(k, change[k])
+        print(ss)
+        return self.session.post(url=url, data=ss.encode("utf-8"), headers=headers)
+
     # 查询待审列表，获取引擎id（注意：右侧待审任务只能展示10条，所以10条之外的数据查询不到）
     def get_opt_engineid(self, dir_name, xml_name):
         self.send_data(dir_name, xml_name, **self.change_data)
