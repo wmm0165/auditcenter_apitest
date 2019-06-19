@@ -122,17 +122,18 @@ class Template:
             engineid = res['data']['engineInfos'][1]['id']
         return engineid
 
-    def opt_audit(self, dir_name,xml_name, audit_type):
-        engineid = self.get_opt_engineid(dir_name,xml_name)
+    def opt_audit(self, dir_name, xml_name, audit_type):
+        engineid = self.get_opt_engineid(dir_name, xml_name)
         url = ''
         param = {}
-
+        # 处方详情审核通过
         if audit_type == '2':
             url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '处方详情审核通过')
             param = {
                 "optRecipeId": engineid,
                 "auditResult": ""
             }
+        # 处方详情审核打回
         elif audit_type == 0:
             url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '处方详情审核打回')
             param = {
@@ -141,6 +142,7 @@ class Template:
                 "operationRecordList": [],
                 "messageStatus": 0
             }
+        # 处方详情审核打回（可双签）
         elif audit_type == 1:
             url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '处方详情审核打回')
             param = {
@@ -151,21 +153,58 @@ class Template:
             }
         self.post_json(url, param)
 
-    def ipt_audit(self):
+    # 待审列表批量通过，audit_type = 1指门急诊，audit_type = 3指住院
+    def audit_multi(self, audit_type, *ids):
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '待审列表批量通过')
         param = {
-            "groupOrderList": [{
-                "auditBoList": [],
-                "groupNo": "462",
-                "auditInfo": "必须修改",
-                "auditStatus": 0,
-                "engineId": "126049",
-                "orderType": 1
-            }]
+            "ids": ids,
+            "auditType": audit_type,
+            "auditWay": 2
         }
+        self.post_json(url, param)
+
+    def ipt_audit(self, gp, engineid, audit_type):
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '医嘱详情审核')
+        # 医嘱详情审核打回
+        if audit_type == 0:
+            param = {
+                "groupOrderList": [{
+                    "auditBoList": [],
+                    "groupNo": gp,
+                    "auditInfo": "必须修改",
+                    "auditStatus": 0,
+                    "engineId": engineid,
+                    "orderType": 1
+                }]
+            }
+        # 医嘱详情审核打回（可双签）
+        elif audit_type == 1:
+            param = {
+                "groupOrderList": [{
+                    "auditBoList": [],
+                    "groupNo": gp,
+                    "auditInfo": "打回可双签",
+                    "auditStatus": 0,
+                    "engineId": engineid,
+                    "orderType": 1,
+                    "messageStatus": 1
+                }]
+            }
+        # 医嘱详情审核通过
+        elif audit_type == 2:
+            param = {
+                "groupOrderList": [{
+                    "auditBoList": [],
+                    "groupNo": gp,
+                    "auditInfo": "审核通过",
+                    "auditStatus": 1,
+                    "engineId": engineid,
+                    "orderType": 1
+                }]
+            }
 
 
 if __name__ == '__main__':
     t = Template()
-    t.send_data('ipt_med', 'ipt_med1.txt', **t.change_data)
-    eid = t.get_ipt_engineid('ipt_med', 'ipt_med2.txt', 2)
-    print(eid)
+    ids = [99098]
+    t.audit_multi(1, *ids)
