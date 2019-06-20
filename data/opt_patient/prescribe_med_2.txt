@@ -8,8 +8,8 @@
   <opt_prescriptions>
     <opt_prescription>
       <opt_prescription_info>
-        <recipe_id><![CDATA[r1_{{ts}}]]></recipe_id>
-        <recipe_no><![CDATA[r1_{{ts}}]]></recipe_no>
+        <recipe_id><![CDATA[r2_{{ts}}]]></recipe_id>
+        <recipe_no><![CDATA[r2_{{ts}}]]></recipe_no>
         <recipe_source><![CDATA[急诊]]></recipe_source>
         <recipe_category><![CDATA[普通处方]]></recipe_category>
         <recipe_type><![CDATA[西药方]]></recipe_type>
@@ -31,12 +31,12 @@
         <pharmacy_name><![CDATA[发药药房名称]]></pharmacy_name>
       </opt_prescription_info>
       <opt_prescription_item>
-        <recipe_item_id><![CDATA[r11_{{ts}}]]></recipe_item_id>
-        <recipe_id><![CDATA[r1_{{ts}}]]></recipe_id>
+        <recipe_item_id><![CDATA[r21_{{ts}}]]></recipe_item_id>
+        <recipe_id><![CDATA[r2_{{ts}}]]></recipe_id>
         <drug_purpose><![CDATA[科室领药]]></drug_purpose>
         <group_no><![CDATA[{{gp}}]]></group_no>
-        <drug_id><![CDATA[00234300]]></drug_id>
-        <drug_name><![CDATA[盐酸维拉帕米注射液]]></drug_name>
+        <drug_id><![CDATA[00002301]]></drug_id>
+        <drug_name><![CDATA[盐酸氟桂利嗪胶囊(西比灵)]]></drug_name>
         <count_unit><![CDATA[6]]></count_unit>
         <pack_unit><![CDATA[盒]]></pack_unit>
         <manufacturer_id><![CDATA[12]]></manufacturer_id>
@@ -68,12 +68,12 @@
         <medicare_type><![CDATA[1]]></medicare_type>
       </opt_prescription_item>
       <opt_prescription_item>
-        <recipe_item_id><![CDATA[r12_{{ts}}]]></recipe_item_id>
-        <recipe_id><![CDATA[r1_{{ts}}]]></recipe_id>
+        <recipe_item_id><![CDATA[r22_{{ts}}]]></recipe_item_id>
+        <recipe_id><![CDATA[r2_{{ts}}]]></recipe_id>
         <drug_purpose><![CDATA[科室领药]]></drug_purpose>
         <group_no><![CDATA[{{gp}}]]></group_no>
-        <drug_id><![CDATA[00256800]]></drug_id>
-        <drug_name><![CDATA[ω-3鱼油脂肪乳注射液(尤文)]]></drug_name>
+        <drug_id><![CDATA[00002401]]></drug_id>
+        <drug_name><![CDATA[尼莫地平片(尼膜同)]]></drug_name>
         <count_unit><![CDATA[6]]></count_unit>
         <pack_unit><![CDATA[盒]]></pack_unit>
         <manufacturer_id><![CDATA[12]]></manufacturer_id>

@@ -1,0 +1,37 @@
+<root>
+  <base>
+    <hospital_code><![CDATA[H0003]]></hospital_code>
+    <event_no><![CDATA[{{ts}}]]></event_no>
+    <patient_id><![CDATA[{{ts}}]]></patient_id>
+    <source><![CDATA[急诊]]></source>
+  </base>
+  <opt_patient>
+    <sex><![CDATA[1]]></sex>
+    <name><![CDATA[{{ts}}]]></name>
+    <id_type><![CDATA[02]]></id_type>
+    <id_no><![CDATA[330101200003058933]]></id_no>
+    <birth_weight><![CDATA[3900g]]></birth_weight>
+    <birthday><![CDATA[1995-03-05]]></birthday>
+    <ethnic_group><![CDATA[02]]></ethnic_group>
+    <native_place><![CDATA[浙江省杭州市西湖区yiyao]]></native_place>
+    <race><![CDATA[汉种]]></race>
+    <med_card_no><![CDATA[23902]]></med_card_no>
+    <event_time><![CDATA[{{d}}]]></event_time>
+    <dept_id><![CDATA[914000133]]></dept_id>
+    <dept_name><![CDATA[测试门诊]]></dept_name>
+    <pay_type><![CDATA[1_3101]]></pay_type>
+    <pregnancy><![CDATA[0]]></pregnancy>
+    <time_of_preg><![CDATA[36]]></time_of_preg>
+    <breast_feeding><![CDATA[0]]></breast_feeding>
+    <height><![CDATA[162cm]]></height>
+    <weight><![CDATA[62kg]]></weight>
+    <address><![CDATA[杭州市西湖区西溪路320室]]></address>
+    <phone_no><![CDATA[15858183745]]></phone_no>
+    <dialysis><![CDATA[1]]></dialysis>
+    <marital><![CDATA[19]]></marital>
+    <occupation><![CDATA[19]]></occupation>
+    <special_constitution><![CDATA[疤体质]]></special_constitution>
+    <patient_condition><![CDATA[重症病人]]></patient_condition>
+    <visit_type><![CDATA[急诊]]></visit_type>
+  </opt_patient>
+</root>

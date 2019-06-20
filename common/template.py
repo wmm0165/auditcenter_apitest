@@ -112,20 +112,20 @@ class Template:
         param = {
             "recipeNo": recipeno
         }
-        url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '查询待审门诊任务列表')
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '查询待审门诊任务列表')
         res = self.post_json(url, param)
         # print(res)
         # print(res['data']['optRecipeList'][0]['optRecipe']['id'])
         return res['data']['optRecipeList'][0]['optRecipe']['id']
 
-    # 根据patient_id查询待审列表获取引擎id，count=2时，取该患者第二条数据的engineid
+    # 根据patient_id查询待审列表获取引擎id，count=1时，取该患者第二条数据的engineid,count=2时，取该患者第二条数据的engineid
     def get_ipt_engineid(self, dir_name, xml_name, count):
         self.send_data(dir_name, xml_name, **self.change_data)
         time.sleep(5)
         param = {
             "patientId": self.change_data['{{ts}}']
         }
-        url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '查询待审住院任务列表')
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '查询待审住院任务列表')
         res = self.post_json(url, param)
         print(res)
         engineid = ''

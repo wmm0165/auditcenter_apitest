@@ -1,13 +1,13 @@
 <root>
   <base>
     <hospital_code><![CDATA[H0003]]></hospital_code>
-    <event_no><![CDATA[{{ts}}_1]]></event_no>
-    <patient_id><![CDATA[{{ts}}]]></patient_id>
+    <event_no><![CDATA[{{ts}}]]></event_no>
+    <patient_id><![CDATA[{{ts}}_1]]></patient_id>
     <source><![CDATA[急诊]]></source>
   </base>
   <opt_patient>
     <sex><![CDATA[1]]></sex>
-    <name><![CDATA[{{ts}}_eno1]]></name>
+    <name><![CDATA[{{ts}}]]></name>
     <id_type><![CDATA[01]]></id_type>
     <id_no><![CDATA[330101200003058932]]></id_no>
     <birth_weight><![CDATA[3001g]]></birth_weight>
@@ -16,14 +16,14 @@
     <native_place><![CDATA[浙江省杭州市西湖区]]></native_place>
     <race><![CDATA[蒙古人种]]></race>
     <med_card_no><![CDATA[23908]]></med_card_no>
-    <event_time><![CDATA[{{df2}}]]></event_time>
+    <event_time><![CDATA[{{df1}}]]></event_time>
     <dept_id><![CDATA[914000133]]></dept_id>
     <dept_name><![CDATA[测试门诊]]></dept_name>
     <pay_type><![CDATA[1_3101]]></pay_type>
     <pregnancy><![CDATA[1]]></pregnancy>
     <time_of_preg><![CDATA[36]]></time_of_preg>
     <breast_feeding><![CDATA[1]]></breast_feeding>
-    <height><![CDATA[161cm]]></height>
+    <height><![CDATA[160cm]]></height>
     <weight><![CDATA[60kg]]></weight>
     <address><![CDATA[杭州市西湖区西溪路525号]]></address>
     <phone_no><![CDATA[123456]]></phone_no>
