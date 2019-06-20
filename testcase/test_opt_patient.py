@@ -8,7 +8,6 @@ from common.template import Template
 
 
 class TestOptPatient(unittest.TestCase):
-    tem = Template()
 
     def setUp(self):
         warnings.simplefilter("ignore", ResourceWarning)
@@ -28,10 +27,11 @@ class TestOptPatient(unittest.TestCase):
         # 获取引擎id
         engine = tem.get_opt_engineid('opt_patient','prescribe_med_1.txt')
         # 点击待审数据的查看
-        url = self.tem.conf.get('auditcenter', 'address') + self.tem.conf.get('api', '待审门诊获取患者信息和处方信息') + str(engine)
-        res = self.tem.get(url)
+        url = tem.conf.get('auditcenter', 'address') + tem.conf.get('api', '待审门诊获取患者信息和处方信息') + str(engine)
+        res = tem.get(url)
         outpatient = res['data']['outpatient']
         print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+
         # 待审详情期望取4中的患者信息
         self.assertEqual(outpatient['height'],"160.0cm")
         self.assertEqual(outpatient['weight'], "60.0kg")
@@ -43,10 +43,11 @@ class TestOptPatient(unittest.TestCase):
         # 审核通过
         engineids = [engine]
         tem.audit_multi(1, *engineids)
-        url_all = self.tem.conf.get('auditcenter', 'address') + self.tem.conf.get('api', '已审门诊获取患者信息和处方信息') + str(engine)
-        res_all = self.tem.get(url_all)
+        url_all = tem.conf.get('auditcenter', 'address') + tem.conf.get('api', '已审门诊获取患者信息和处方信息') + str(engine)
+        res_all = tem.get(url_all)
         outpatient_all= res_all['data']['outpatient']
         print(json.dumps(res_all, indent=2, sort_keys=False, ensure_ascii=False))
+
         # 已审详情期望取4中的患者信息
         self.assertEqual(outpatient_all['height'],"160.0cm")
         self.assertEqual(outpatient_all['weight'], "60.0kg")
@@ -62,8 +63,8 @@ class TestOptPatient(unittest.TestCase):
         tem = Template()
         tem.send_data('opt_patient', '5.txt', **tem.change_data)
         engine1 = tem.get_opt_engineid('opt_patient', 'prescribe_med_1.txt')
-        url = self.tem.conf.get('auditcenter', 'address') + self.tem.conf.get('api', '待审门诊获取患者信息和处方信息') + str(engine1)
-        res1 = self.tem.get(url)
+        url = tem.conf.get('auditcenter', 'address') + tem.conf.get('api', '待审门诊获取患者信息和处方信息') + str(engine1)
+        res1 = tem.get(url)
         outpatient1 = res1['data']['outpatient']
         # 处方1待审详情期望取5中的患者信息
         self.assertEqual(outpatient1['height'],"162.0cm")
@@ -76,9 +77,9 @@ class TestOptPatient(unittest.TestCase):
 
         tem.send_data('opt_patient', '6_修改5.txt', **tem.change_data)
         engine2 = tem.get_opt_engineid('opt_patient', 'prescribe_med_2.txt')
-        url = self.tem.conf.get('auditcenter', 'address') + self.tem.conf.get('api', '待审门诊获取患者信息和处方信息') + str(engine2)
-        res2 = self.tem.get(url)
-        outpatient2 = res1['data']['outpatient']
+        url = tem.conf.get('auditcenter', 'address') + tem.conf.get('api', '待审门诊获取患者信息和处方信息') + str(engine2)
+        res2 = tem.get(url)
+        outpatient2 = res2['data']['outpatient']
         print(outpatient2)
         # 处方2待审详情期望取6中的患者信息
         self.assertEqual(outpatient2['height'],"164.0cm")
@@ -88,14 +89,8 @@ class TestOptPatient(unittest.TestCase):
         self.assertEqual(outpatient2['isPregnant'], "0")
         self.assertEqual(outpatient2['pregWeeks'], 36)
         self.assertEqual(outpatient2['isLactation'], "0")
-
-
-
-
-
-
-
-
+        engineids = [engine1,engine2]
+        tem.audit_multi(1, *engineids)
 
 
 if __name__ == '__main__':
