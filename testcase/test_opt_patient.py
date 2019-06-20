@@ -5,16 +5,18 @@ import unittest
 import json
 import warnings
 from common.template import Template
+from common.logger import Logger
 
 
 class TestOptPatient(unittest.TestCase):
+    warnings.simplefilter("ignore", ResourceWarning)
+    log = Logger("TestOptPatient")
 
     def setUp(self):
-        warnings.simplefilter("ignore", ResourceWarning)
-        print("开始执行用例opt_patient...")
+        self.log.get_log().debug("开始执行用例TestOptPatient...")
 
     def tearDown(self):
-        print("结束执行用例opt_patient...")
+        self.log.get_log().debug("结束执行用例TestOptPatient...")
 
     def test_case_one(self):
         # 发送数据
