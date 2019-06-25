@@ -1,6 +1,7 @@
 import datetime
+import re
 
-# 不传ccr只传scr时，根据scr计算ccr
+
 class Ccr:
     def __init__(self):
         self.female = {'0M': 3.2,
@@ -38,50 +39,51 @@ class Ccr:
                        '17岁': 50.37,
                        '18岁': 50.37}
         self.male = {'0M': 3.3,
-                       '1M': 5.1,
-                       '2M': 6.16,
-                       '3M': 6.74,
-                       '4M': 7.56,
-                       '5M': 8.02,
-                       '6M': 8.62,
-                       '8M': 9.19,
-                       '10M': 9.65,
-                       '12M': 10.16,
-                       '15M': 10.7,
-                       '18M': 11.25,
-                       '21M': 11.83,
-                       '2岁': 12.57,
-                       '2.5岁': 13.56,
-                       '3岁': 14.42,
-                       '3.5岁': 15.37,
-                       '4岁': 16.23,
-                       '4.5岁': 17.24,
-                       '5岁': 18.34,
-                       '5.5岁': 19.38,
-                       '6岁': 20.97,
-                       '7岁': 23.35,
-                       '8岁': 25.73,
-                       '9岁': 28.66,
-                       '10岁': 31.88,
-                       '11岁': 35.69,
-                       '12岁': 39.74,
-                       '13岁': 45.96,
-                       '14岁': 50.83,
-                       '15岁': 54.11,
-                       '16岁': 56.8,
-                       '17岁': 58.25,
-                       '18岁': 58.25}
+                     '1M': 5.1,
+                     '2M': 6.16,
+                     '3M': 6.74,
+                     '4M': 7.56,
+                     '5M': 8.02,
+                     '6M': 8.62,
+                     '8M': 9.19,
+                     '10M': 9.65,
+                     '12M': 10.16,
+                     '15M': 10.7,
+                     '18M': 11.25,
+                     '21M': 11.83,
+                     '2岁': 12.57,
+                     '2.5岁': 13.56,
+                     '3岁': 14.42,
+                     '3.5岁': 15.37,
+                     '4岁': 16.23,
+                     '4.5岁': 17.24,
+                     '5岁': 18.34,
+                     '5.5岁': 19.38,
+                     '6岁': 20.97,
+                     '7岁': 23.35,
+                     '8岁': 25.73,
+                     '9岁': 28.66,
+                     '10岁': 31.88,
+                     '11岁': 35.69,
+                     '12岁': 39.74,
+                     '13岁': 45.96,
+                     '14岁': 50.83,
+                     '15岁': 54.11,
+                     '16岁': 56.8,
+                     '17岁': 58.25,
+                     '18岁': 58.25}
         self.recipe_time_str = '2019-06-25'
-        self.birthday_str = '1994-02-28'
-        self.age = self.calculate_age(self.recipe_time_str,self.birthday_str)
+        self.birthday_str = '2015-02-28'
+        self.y, self.age = self.calculate_age(self.recipe_time_str, self.birthday_str)
 
-    # 计算年龄
-    # 门诊   birthday  recipe_time
+    # 根据出生日期计算年龄
+    # 门诊   recipe_time - birthday
     # 住院   birthday
     def calculate_age(self, recipe_time_str, birthday_str):
         recipe_time = datetime.datetime.strptime(recipe_time_str, '%Y-%m-%d')
         birthday = datetime.datetime.strptime(birthday_str, '%Y-%m-%d')
-        age = 0
+        y = 0
+        age = ''
         if recipe_time.month < birthday.month:
             y = recipe_time.year - birthday.year - 1
             if y == 0:
@@ -118,24 +120,34 @@ class Ccr:
                     age = str(12 - (birthday.month - recipe_time.month)) + 'M'
             else:
                 age = str(y) + '岁'
-        return age
+        return y, age
 
-    def get_default_weight(self,sex):
+    # 计算年龄默认值
+    def get_default_weight(self, sex):
+        num = self.age[0:-1]
+        str = self.age[-1]
         weight = 0
         if sex == '男':
-            for k in self.male:
-                if k == self.age:
-                    weight = self.male[k]
+            if str == '岁' and int(num) > 18:
+                weight = 60
+            else:
+                for k in self.male:
+                    if k == self.age:
+                        weight = self.male[k]
         else:
-            for k in self.female:
-                if k == self.age:
-                    weight = self.female[k]
+            if str == '岁' and int(num) > 18:
+                weight = 50
+            else:
+                for k in self.female:
+                    if k == self.age:
+                        weight = self.female[k]
         return weight
 
-    def ccr_calculate(self, sex, unit, weight, scr, default):
-        age = self.age
+    # 不传ccr只传scr时，根据scr计算ccr
+    def ccr_calculate(self, sex, unit, age, weight, scr, default):
+
         if default == 0:  # 不使用默认身高体重
-            if age == '' or weight == '' or sex == '' :
+            if age == '' or weight == '' or sex == '':
                 ccr = str(90) + '预设值'
             else:
                 if unit == 'mg/dl':
@@ -149,7 +161,7 @@ class Ccr:
         # 使用默认身高体重
         else:
             if age == '' or sex == '':
-                ccr = str(90) + '预设值'
+                ccr = str(90) + '(预设值)'
             else:
                 if sex == '男':
                     weight = self.get_default_weight('男')
@@ -167,4 +179,8 @@ class Ccr:
 
 
 cal_ccr = Ccr()
-# cal_ccr.ccr_calculate('男', '')
+we = cal_ccr.get_default_weight('男')
+print(we)
+print(cal_ccr.age)
+test = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight='', scr=2, default=1)
+print(test)
