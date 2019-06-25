@@ -122,7 +122,7 @@ class Ccr:
                 age = str(y) + '岁'
         return y, age
 
-    # 计算年龄默认值
+    # 体重为空时，若使用默认身高体重，则根据性别和年龄计算体重默认值
     def get_default_weight(self, sex):
         num = self.age[0:-1]
         str = self.age[-1]
