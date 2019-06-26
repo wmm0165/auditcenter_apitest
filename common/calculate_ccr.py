@@ -1,6 +1,7 @@
 import datetime
 import re
 
+
 # ccr:内生肌酐清除率 scr：肌酐，根据scr计算ccr（注意肌酐的单位）
 # Ccr=(140-年龄)×体重(kg)/72×Scr(mg/dl) 或
 # Ccr=[(140-年龄)×体重(kg)]/[0.818×Scr(umol/L)]
@@ -146,35 +147,36 @@ class Ccr:
                         weight = self.female[k]
         return weight
 
-    # 不传ccr只传scr时，根据scr计算ccr
-    def ccr_calculate(self, sex, unit, age, weight, scr, default):
+    # 不使用默认身高体重（以下只考虑传入weight不为空的情况，weight为空时直接取90（预设值））
+    def ccr_calculate(self, sex, unit, age, weight, scr):
+        if unit == 'mg/dl':  # 单位不区分大小写
+            ccr = ((140 - age) * weight) / (72 * scr)
+        elif unit == 'umol/L':  # 单位不区分大小写
+            ccr = ((140 - age) * weight) / (0.818 * scr)
+        else:
+            ccr = 90
+        if sex == '女':
+            ccr = 0.85 * ccr
+        return ccr
 
-        if default == 0:  # 不使用默认身高体重（以下只考虑传入weight不为空的情况，weight为空时直接取90（预设值））
+    # weight为空时使用默认体重,默认体重根据性别和年龄计算
+    def ccr_default_weight(self, sex, unit, age, scr):
+        if sex == '男':
+            weight = self.get_default_weight('男')
             if unit == 'mg/dl':  # 单位不区分大小写
                 ccr = ((140 - age) * weight) / (72 * scr)
             elif unit == 'umol/L':  # 单位不区分大小写
                 ccr = ((140 - age) * weight) / (0.818 * scr)
             else:
                 ccr = 90
-            if sex == '女':
-                ccr = 0.85 * ccr
-        # default == 1使用默认身高体重（以下只考虑weight为空时使用默认体重的情况）
         else:
-            if age == '' or sex == '':
-                ccr = 90
+            weight = self.get_default_weight('女')
+            if unit == 'mg/dl':  # 单位不区分大小写
+                ccr = ((140 - age) * weight) / (72 * scr) * 0.85
+            elif unit == 'umol/L':  # 单位不区分大小写
+                ccr = ((140 - age) * weight) / (0.818 * scr) * 0.85
             else:
-                if sex == '男':
-                    weight = self.get_default_weight('男')
-                    if unit == 'mg/dl':
-                        ccr = ((140 - age) * weight) / (72 * scr)
-                    else:
-                        ccr = ((140 - age) * weight) / (0.818 * scr)
-                else:
-                    weight = self.get_default_weight('女')
-                    if unit == 'mg/dl':
-                        ccr = ((140 - age) * weight) / (72 * scr) * 0.85
-                    else:
-                        ccr = ((140 - age) * weight) / (0.818 * scr) * 0.85
+                ccr = 90
         return ccr
 
 
@@ -183,13 +185,13 @@ we = cal_ccr.get_default_weight('男')
 print(we)
 print(cal_ccr.age)
 # 不使用默认体重
-a1 = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=40, scr=2, default=0) # 公式一
-b1 = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=40, scr=2, default=0) # 公式二
+a1 = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=40, scr=2, default=0)  # 公式一
+b1 = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=40, scr=2, default=0)  # 公式二
 c1 = cal_ccr.ccr_calculate(sex='女', unit='mg/dl', age=cal_ccr.y, weight=40, scr=2, default=0)
 d1 = cal_ccr.ccr_calculate(sex='女', unit='umol/L', age=cal_ccr.y, weight=40, scr=2, default=0)
 # 使用默认体重，xml中weight应为空
-a = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=0, scr=2, default=1) # 公式一
-b = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=0, scr=2, default=1) # 公式二
+a = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=0, scr=2, default=1)  # 公式一
+b = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=0, scr=2, default=1)  # 公式二
 c = cal_ccr.ccr_calculate(sex='女', unit='mg/dl', age=cal_ccr.y, weight=0, scr=2, default=1)
 d = cal_ccr.ccr_calculate(sex='女', unit='umol/L', age=cal_ccr.y, weight=0, scr=2, default=1)
 print(a)
