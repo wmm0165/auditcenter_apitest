@@ -2,15 +2,13 @@
 # @Time : 2019/6/8 21:40
 # @Author : wangmengmeng
 import datetime
-from hashlib import md5
+import hashlib
 import json
 import os
 import random
 import re
 import time
-
 import requests
-
 from config.read_config import ReadConfig
 
 
@@ -19,24 +17,25 @@ class Template:
         self.conf = ReadConfig()
         url_yzm = "http://10.1.1.94:10000/api/v1/magicno"
         url = 'http://10.1.1.94:10000/api/v1/login'
+        start_sf_url = "http://10.1.1.94:10000/api/v1/startAuditWork"  # 获取开始审方url
         # username = self.conf.get('login', 'username')
         headers = {'Content-Type': "application/json"}
         self.session = requests.session()
-        res_yzm = self.get(url_yzm)  # 获取验证码,加密方式为md5(salt)
-        print(res_yzm)
+        res_yzm = self.get(url_yzm)  # 获取验证码
         salt = res_yzm['data']
-        print(salt)
-        pwd = '123456'
-        password = self.create_md5(pwd, salt)
-        # m = hashlib.md5()  # 创建md5对象
-        # m.update(passwd.encode())  # 生成加密字符串
-        # password = m.hexdigest()
+        passwd = '123456'  # 密码加密方式为 明文密码md5加密后拼接salt再次md5加密
+        m = hashlib.md5()  # 创建md5对象
+        m.update(passwd.encode())  # 生成加密字符串
+        password = m.hexdigest()
+        password = password + salt
+        m1 = hashlib.md5()
+        m1.update(password.encode())
+        password1 = m1.hexdigest()
         print(password)
-        params = {"name": "wangmm", "password": password}
+        params = {"name": "wangmm", "password": password1}
         res = self.session.post(url, data=json.dumps(params), headers=headers).json()  # 登录用户中心
         print(res)
-        start_sf_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/startAuditWork'  # 获取开始审方url
-        self.session.get(url=start_sf_url)  # 开始审方
+        res1 = self.session.get(url=start_sf_url)  # 开始审方
         group_no = random.randint(1, 1000000)
         cgroup_no = random.randint(1, 1000000)
         self.now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -71,13 +70,6 @@ class Template:
                             "{{dt}}": str(self.now)
                             }
 
-    # def get_session(self):
-    #     return self.session
-    def create_md5(self,pwd, salt):
-        md5_obj = md5()
-        md5_obj.update((pwd + salt).encode())
-        return md5_obj.hexdigest()
-
     def post_json(self, url, para):
         data = para
         data = json.dumps(data)
@@ -90,7 +82,7 @@ class Template:
     def send_data(self, dir_name, xml_name, **change):
         # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
         xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
-        send_data_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/auditcenter'
+        send_data_url = "http://10.1.1.94:10000/api/v1/auditcenter"
         headers = {"Content-Type": "text/plain"}
         print(xml_path)
         with open(xml_path, encoding="utf-8") as fp:
