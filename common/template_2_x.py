@@ -115,7 +115,7 @@ class Template:
         param = {
             "recipeNo": recipeno
         }
-        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '查询待审门诊任务列表')
+        url = "http://10.1.1.94:10000/api/v1/opt/selNotAuditOptList"
         res = self.post_json(url, param)
         # print(res)
         # print(res['data']['optRecipeList'][0]['optRecipe']['id'])
