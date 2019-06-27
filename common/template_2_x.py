@@ -43,6 +43,9 @@ class Template:
         yest = (datetime.datetime.now() + datetime.timedelta(days=-1)).strftime("%Y-%m-%d %H:%M:%S")
         yest_ts = int(time.mktime(time.strptime(yest, "%Y-%m-%d %H:%M:%S"))) * 1000
         yest_raw = (datetime.datetime.now() + datetime.timedelta(days=-1))
+        yest_raw1 = (datetime.datetime.now() + datetime.timedelta(days=0))
+        print("yest_raw1", yest_raw1)
+
         self.yest_front_onehour = (yest_raw + datetime.timedelta(hours=-1)).strftime("%Y-%m-%d %H:%M:%S")
         yest_front_onehour_ts = int(time.mktime(time.strptime(self.yest_front_onehour, "%Y-%m-%d %H:%M:%S"))) * 1000
         self.yest_front_twohour = (yest_raw + datetime.timedelta(hours=-2)).strftime("%Y-%m-%d %H:%M:%S")
@@ -69,6 +72,19 @@ class Template:
                             "{{df1}}": str(self.yest_front_onehour),
                             "{{dt}}": str(self.now)
                             }
+
+    # 获取日期格式为%Y-%m-%d %H:%M:%S：，n可取0（表示当前日期），正（表示当前日期+n天），负（表示当前日期-n天）
+    def get_date(self, d, h):
+        date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
+            "%Y-%m-%d %H:%M:%S")
+        return date
+    # 获取指定日期的时间戳
+    def get_ts(self,d, h):
+        date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
+            "%Y-%m-%d %H:%M:%S")
+        ts = int(time.mktime(time.strptime(date, "%Y-%m-%d %H:%M:%S")))  # 获取10位时间戳
+        # ts = int(time.mktime(time.strptime(date, "%Y-%m-%d %H:%M:%S"))) * 1000   # 获取13位时间戳
+        return ts
 
     def post_json(self, url, para):
         data = para
@@ -222,5 +238,6 @@ class Template:
 
 if __name__ == '__main__':
     t = Template()
+    print(t.get_ts(1,-2))
     # ids = [99098]
     # t.audit_multi(1, *ids)
