@@ -118,6 +118,14 @@ class Template:
         # print(res['data']['optRecipeList'][0]['optRecipe']['id'])
         return res['data']['optRecipeList'][0]['optRecipe']['id']
 
+    # type = 0代表待审页面，type = 1代表已审页面
+    def get_opt_recipeInfo(self,engineid,type):
+        if type == 0:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '待审门诊获取患者信息和处方信息') + str(engineid)
+        else:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审门诊获取患者信息和处方信息') + str(engineid)
+        return self.get(url)
+
     # 根据patient_id查询待审列表获取引擎id，count=1时，取该患者第二条数据的engineid,count=2时，取该患者第二条数据的engineid
     def get_ipt_engineid(self, dir_name, xml_name, count):
         self.send_data(dir_name, xml_name, **self.change_data)
