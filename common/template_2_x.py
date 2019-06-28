@@ -38,39 +38,20 @@ class Template:
         res1 = self.session.get(url=start_sf_url)  # 开始审方
         group_no = random.randint(1, 1000000)
         cgroup_no = random.randint(1, 1000000)
-        self.now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.now_ts = int(time.mktime(time.strptime(self.now, "%Y-%m-%d %H:%M:%S"))) * 1000
-        yest = (datetime.datetime.now() + datetime.timedelta(days=-1)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_ts = int(time.mktime(time.strptime(yest, "%Y-%m-%d %H:%M:%S"))) * 1000
-        yest_raw = (datetime.datetime.now() + datetime.timedelta(days=-1))
-        yest_raw1 = (datetime.datetime.now() + datetime.timedelta(days=0))
-        print("yest_raw1", yest_raw1)
-
-        self.yest_front_onehour = (yest_raw + datetime.timedelta(hours=-1)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_front_onehour_ts = int(time.mktime(time.strptime(self.yest_front_onehour, "%Y-%m-%d %H:%M:%S"))) * 1000
-        self.yest_front_twohour = (yest_raw + datetime.timedelta(hours=-2)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_front_twohour_ts = int(time.mktime(time.strptime(self.yest_front_twohour, "%Y-%m-%d %H:%M:%S"))) * 1000
-        self.yest_front_threehour = (yest_raw + datetime.timedelta(hours=-3)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_front_threehour_ts = int(time.mktime(time.strptime(self.yest_front_threehour, "%Y-%m-%d %H:%M:%S"))) * 1000
-        yest_front_fourhour = (yest_raw + datetime.timedelta(hours=-4)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_front_fourhour_ts = int(time.mktime(time.strptime(yest_front_fourhour, "%Y-%m-%d %H:%M:%S"))) * 1000
-        yest_behind_onehour = (yest_raw + datetime.timedelta(hours=+1)).strftime("%Y-%m-%d %H:%M:%S")
-        yest_behind_onehour_ts = int(time.mktime(time.strptime(self.yest_front_onehour, "%Y-%m-%d %H:%M:%S"))) * 1000
-
-        self.change_data = {"{{ts}}": str(self.now_ts),
-                            "{{t}}": str(yest_ts),
-                            "{{d}}": str(yest),
-                            "{{tf4}}": str(yest_front_fourhour_ts),
-                            "{{df4}}": str(yest_front_fourhour),
-                            "{{tb1}}": str(yest_behind_onehour_ts),
-                            "{{db1}}": str(yest_behind_onehour),
+        self.change_data = {"{{ts}}": str(self.get_ts(0,0)),
+                            "{{t}}": str(self.get_ts(-1,0)),
+                            "{{d}}": str(self.get_date(-1,0)),
+                            "{{tf4}}": str(self.get_ts(-1,-4)),
+                            "{{df4}}": str(self.get_date(-1,-4)),
+                            "{{tb1}}": str(self.get_ts(-1,+1)),
+                            "{{db1}}": str(self.get_date(-1,+1)),
                             "{{gp}}": str(group_no),
                             "{{cgp}}": str(cgroup_no),
-                            "{{df6}}": str(yest_front_fourhour),
-                            "{{df3}}": str(self.yest_front_threehour),
-                            "{{df2}}": str(self.yest_front_twohour),
-                            "{{df1}}": str(self.yest_front_onehour),
-                            "{{dt}}": str(self.now)
+                            "{{df6}}": str(self.get_date(-1,-6)),
+                            "{{df3}}": str(self.get_date(-1,-3)),
+                            "{{df2}}": str(self.get_date(-1,-1)),
+                            "{{df1}}": str(self.get_date(-1,-1)),
+                            "{{dt}}": str(self.get_date(0,0))
                             }
 
     # 获取日期格式为%Y-%m-%d %H:%M:%S：，n可取0（表示当前日期），正（表示当前日期+n天），负（表示当前日期-n天）
@@ -238,6 +219,6 @@ class Template:
 
 if __name__ == '__main__':
     t = Template()
-    print(t.get_ts(1,-2))
+    print(t.get_date(-1,-6))
     # ids = [99098]
     # t.audit_multi(1, *ids)
