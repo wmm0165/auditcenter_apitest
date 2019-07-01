@@ -55,9 +55,16 @@ class Template:
                             }
 
     # 获取日期格式为%Y-%m-%d %H:%M:%S：，n可取0（表示当前日期），正（表示当前日期+n天），负（表示当前日期-n天）
+    def get_ymd(self, d, h):
+        date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
+            "%Y-%m-%d")
+        print(type(date))
+        return date
+
     def get_date(self, d, h):
         date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
             "%Y-%m-%d %H:%M:%S")
+        print(type(date))
         return date
     # 获取指定日期的时间戳
     def get_ts(self,d, h):
@@ -227,6 +234,6 @@ class Template:
 
 if __name__ == '__main__':
     t = Template()
-    print(t.get_date(-1,-6))
+    print(t.get_ymd(-1,-6))
     # ids = [99098]
     # t.audit_multi(1, *ids)
