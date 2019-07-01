@@ -7,7 +7,7 @@ import re
 # Ccr=[(140-年龄)×体重(kg)]/[0.818×Scr(umol/L)]
 # 其中女性按计算结果×0.85
 class Ccr:
-    def __init__(self):
+    def __init__(self,recipe_time_str,birthday_str):
         self.female = {'0M': 3.2,
                        '1M': 4.81,
                        '2M': 5.74,
@@ -76,8 +76,9 @@ class Ccr:
                      '16岁': 56.8,
                      '17岁': 58.25,
                      '18岁': 58.25}
-        self.recipe_time_str = '2019-06-25'
-        self.birthday_str = '2015-02-28'
+        self.recipe_time_str = recipe_time_str
+        self.birthday_str = birthday_str
+        # self.birthday_str = '2019-03-05'   # 3个月
         self.y, self.age = self.calculate_age(self.recipe_time_str, self.birthday_str)
 
     # 根据出生日期计算年龄
@@ -101,9 +102,9 @@ class Ccr:
             y = recipe_time.year - birthday.year
             if y == 0:
                 if recipe_time.day < birthday.day:
-                    age = str(12 - (birthday.month - recipe_time.month) - 1) + 'M'
+                    age = str(recipe_time.month - birthday.month -1) + 'M'
                 else:
-                    age = str(12 - (birthday.month - recipe_time.month)) + 'M'
+                    age = str(recipe_time.month - birthday.month) + 'M'
             else:
                 age = str(y) + '岁'
         if recipe_time.month == birthday.month and recipe_time.day < birthday.day:
@@ -179,19 +180,29 @@ class Ccr:
                 ccr = 90
         return ccr
 
+if __name__ == '__main__':
 
-cal_ccr = Ccr()
-we = cal_ccr.get_default_weight('男')
-print(we)
-print(cal_ccr.age)
-# 不使用默认体重
-a1 = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=40, scr=2, default=0)  # 公式一
-b1 = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=40, scr=2, default=0)  # 公式二
-c1 = cal_ccr.ccr_calculate(sex='女', unit='mg/dl', age=cal_ccr.y, weight=40, scr=2, default=0)
-d1 = cal_ccr.ccr_calculate(sex='女', unit='umol/L', age=cal_ccr.y, weight=40, scr=2, default=0)
-# 使用默认体重，xml中weight应为空
-a = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=0, scr=2, default=1)  # 公式一
-b = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=0, scr=2, default=1)  # 公式二
-c = cal_ccr.ccr_calculate(sex='女', unit='mg/dl', age=cal_ccr.y, weight=0, scr=2, default=1)
-d = cal_ccr.ccr_calculate(sex='女', unit='umol/L', age=cal_ccr.y, weight=0, scr=2, default=1)
-print(a)
+    cal_ccr = Ccr('2019-07-01','2003-03-05')
+    w1 = cal_ccr.get_default_weight('男')
+    print(w1)
+    w2 = cal_ccr.get_default_weight('女')
+    print(w2)
+    print(cal_ccr.age)
+    print(cal_ccr.y)
+    # 不使用默认体重
+    # a1 = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=60, scr=1)  # 公式一
+    # b1 = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=60, scr=1)  # 公式二
+    # c1 = cal_ccr.ccr_calculate(sex='女', unit='mg/dl', age=cal_ccr.y, weight=60, scr=1)
+    # d1 = cal_ccr.ccr_calculate(sex='女', unit='umol/L', age=cal_ccr.y, weight=60, scr=1)
+    # 使用默认体重，xml中weight应为空
+    a1 = cal_ccr.ccr_default_weight(sex='男', unit='mg/dl', age=cal_ccr.y,  scr=1)  # 公式一
+    # b1 = cal_ccr.ccr_default_weight(sex='男', unit='umol/L', age=cal_ccr.y, scr=1)  # 公式二
+    # c1 = cal_ccr.ccr_default_weight(sex='女', unit='mg/dl', age=cal_ccr.y,  scr=1)
+    # d1 = cal_ccr.ccr_default_weight(sex='女', unit='umol/L', age=cal_ccr.y, scr=1)
+    print(a1)
+    # print(b1)
+    # print(c1)
+    # print(d1)
+    # a = cal_ccr.ccr_default_weight(sex='女', unit='mg/dl', age=cal_ccr.y,  scr=2)  # 公式一
+    # print(a)
+
