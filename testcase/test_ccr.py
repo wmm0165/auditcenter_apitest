@@ -28,8 +28,7 @@ class TestCcr(unittest.TestCase):
     def test_opt_two(self):
         # 检验中传入scr,则ccr取传入值
         tem = Template()
-        print(tem.get_date(0,0).strftime("%Y-%m-%d"))
-        cal_ccr = Ccr('2019-07-01 20:29:00', '1994-03-05')
+        cal_ccr = Ccr(tem.get_ymd(0,0), '1994-03-05')
         tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
         # engine = tem.get_opt_engineid('opt_ccr', '不传ccr和scr_1.txt')
         # res = tem.get_opt_recipeInfo(engine,0)
