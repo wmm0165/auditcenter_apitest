@@ -41,7 +41,7 @@ class Template:
         self.change_data = {"{{ts}}": str(self.get_ts(0,0)),
                             "{{t}}": str(self.get_ts(-1,0)),
                             "{{d}}": str(self.get_date(-1,0)),
-                            "{{tf4}}": str(self.get_ts(-1,-4)),
+                            "{{tf3}}": str(self.get_ts(-1,-3)),
                             "{{df4}}": str(self.get_date(-1,-4)),
                             "{{tb1}}": str(self.get_ts(-1,+1)),
                             "{{db1}}": str(self.get_date(-1,+1)),
@@ -132,6 +132,14 @@ class Template:
         else:
             url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审门诊获取患者信息和处方信息') + str(engineid)
         return self.get(url)
+
+    def get_ipt_patient(self,engineid,type):
+        if type == 0:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '待审住院获取患者信息') + '?id='+ str(engineid)
+        else:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审住院获取患者信息') + '?id=' + str(engineid)
+        return self.get(url)
+
 
     # 根据patient_id查询待审列表获取引擎id，count=1时，取该患者第二条数据的engineid,count=2时，取该患者第二条数据的engineid
     def get_ipt_engineid(self, dir_name, xml_name, count):

@@ -1,0 +1,26 @@
+<root>
+  <base>
+    <hospital_code><![CDATA[H0003]]></hospital_code>
+    <event_no><![CDATA[{{ts}}]]></event_no>
+    <patient_id><![CDATA[{{ts}}]]></patient_id>
+    <source><![CDATA[住院]]></source>
+  </base>
+   <vital_signs>
+  <vital_sign>
+    <vital_sign_no><![CDATA[{{tf2}}]]></vital_sign_no>
+    <temperature><![CDATA[37.0]]></temperature>
+    <sbp><![CDATA[140]]></sbp>
+    <dbp><![CDATA[80]]></dbp>
+    <breathing_rate><![CDATA[40次/min]]></breathing_rate>
+    <pulse_rate><![CDATA[80次/min]]></pulse_rate>
+    <heart_rate><![CDATA[30min/次]]></heart_rate>
+    <pain_score><![CDATA[4]]></pain_score>
+    <hour24_amount_in><![CDATA[200ml]]></hour24_amount_in>
+    <hour24_amount_out><![CDATA[100ml]]></hour24_amount_out>
+    <test_time><![CDATA[{{df2}}]]></test_time>
+    <vital_sign_status><![CDATA[0]]></vital_sign_status>
+    <height><![CDATA[166cm]]></height>
+    <weight><![CDATA[56kg]]></weight>
+  </vital_sign>
+</vital_signs>
+</root>

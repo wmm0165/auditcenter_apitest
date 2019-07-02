@@ -192,17 +192,17 @@ if __name__ == '__main__':
     # 不使用默认体重
     # a1 = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=60, scr=1)  # 公式一
     # b1 = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=60, scr=1)  # 公式二
-    # c1 = cal_ccr.ccr_calculate(sex='女', unit='mg/dl', age=cal_ccr.y, weight=60, scr=1)
+    c1 = cal_ccr.ccr_calculate(sex='女', unit='mg/dl', age=25, weight=56, scr=2)
     # d1 = cal_ccr.ccr_calculate(sex='女', unit='umol/L', age=cal_ccr.y, weight=60, scr=1)
     # 使用默认体重，xml中weight应为空
-    a1 = cal_ccr.ccr_default_weight(sex='男', unit='mg/dl', age=cal_ccr.y,  scr=1)  # 公式一
+    # a1 = cal_ccr.ccr_default_weight(sex='男', unit='mg/dl', age=cal_ccr.y,  scr=1)  # 公式一
     # b1 = cal_ccr.ccr_default_weight(sex='男', unit='umol/L', age=cal_ccr.y, scr=1)  # 公式二
     # c1 = cal_ccr.ccr_default_weight(sex='女', unit='mg/dl', age=cal_ccr.y,  scr=1)
     # d1 = cal_ccr.ccr_default_weight(sex='女', unit='umol/L', age=cal_ccr.y, scr=1)
-    print(a1)
+    # print(a1)
     # print(b1)
-    # print(c1)
+    print(c1)
     # print(d1)
-    # a = cal_ccr.ccr_default_weight(sex='女', unit='mg/dl', age=cal_ccr.y,  scr=2)  # 公式一
-    # print(a)
-
+    a = ((140 - 25) * 56) / (72 * 2) * 0.85  # 公式一
+    print(a)
+print(44.72*0.85)
