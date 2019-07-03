@@ -39,6 +39,8 @@ class Template:
         group_no = random.randint(1, 1000000)
         cgroup_no = random.randint(1, 1000000)
         self.change_data = {"{{ts}}": str(self.get_ts(0,0)),
+                            "{{tf2}}": str(self.get_ts(-1, -2)),
+                            "{{tf1}}": str(self.get_ts(-1, -1)),
                             "{{t}}": str(self.get_ts(-1,0)),
                             "{{d}}": str(self.get_date(-1,0)),
                             "{{tf3}}": str(self.get_ts(-1,-3)),
@@ -58,13 +60,11 @@ class Template:
     def get_ymd(self, d, h):
         date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
             "%Y-%m-%d")
-        print(type(date))
         return date
 
     def get_date(self, d, h):
         date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
             "%Y-%m-%d %H:%M:%S")
-        print(type(date))
         return date
     # 获取指定日期的时间戳
     def get_ts(self,d, h):
@@ -84,9 +84,11 @@ class Template:
         return self.session.get(url).json()
 
     def send_data(self, dir_name, xml_name, **change):
+        time.sleep(1)  # 审方系统问题，每次发数据需要时间间隔
         # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
         xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
         send_data_url = "http://10.1.1.94:10000/api/v1/auditcenter"
+        # send_data_url = "http://192.168.1.193:8080/api/v1/auditcenter"
         headers = {"Content-Type": "text/plain"}
         print(xml_path)
         with open(xml_path, encoding="utf-8") as fp:

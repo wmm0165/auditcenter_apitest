@@ -6,7 +6,7 @@
     <source><![CDATA[住院]]></source>
   </base>
   <ipt_patient>
-    <sex><![CDATA[0]]></sex>
+    <sex><![CDATA[9]]></sex>
     <name><![CDATA[{{ts}}]]></name>
     <id_type><![CDATA[01]]></id_type>
     <id_no><![CDATA[330100200002168932]]></id_no>

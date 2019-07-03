@@ -6,7 +6,7 @@
     <source><![CDATA[住院]]></source>
   </base>
   <ipt_patient>
-    <sex><![CDATA[0]]></sex>
+    <sex><![CDATA[2]]></sex>
     <name><![CDATA[{{ts}}]]></name>
     <id_type><![CDATA[01]]></id_type>
     <id_no><![CDATA[330100200002168932]]></id_no>
@@ -148,7 +148,7 @@
         <report_id><![CDATA[rid2_{{gp}}]]></report_id>
         <exam_item_code><![CDATA[011]]></exam_item_code>
         <exam_item_name><![CDATA[血常规+超敏C反应蛋白]]></exam_item_name>
-        <sample_collect_time><![CDATA[2019-01-24 12:00:00]]></sample_collect_time>
+        <sample_collect_time><![CDATA[{{df2}}]]></sample_collect_time>
         <sample_code><![CDATA[0002]]></sample_code>
         <sample_name><![CDATA[血液]]></sample_name>
         <sample_collect_opporunity><![CDATA[空腹]]></sample_collect_opporunity>
@@ -159,16 +159,29 @@
         <applicant_dept_name><![CDATA[中心ICU]]></applicant_dept_name>
         <reporter_id><![CDATA[03]]></reporter_id>
         <reporter_name><![CDATA[李粒]]></reporter_name>
-        <report_time><![CDATA[2019-01-24 12:00:00]]></report_time>
+        <report_time><![CDATA[{{df2}}]]></report_time>
         <exam_aim><![CDATA[检验目的]]></exam_aim>
       </ipt_exam_info>
       <ipt_exam_item>
         <report_id><![CDATA[rid2_{{gp}}]]></report_id>
         <report_item_id><![CDATA[01]]></report_item_id>
         <indicator_code><![CDATA[肌酐test]]></indicator_code>
-        <indicator_name><![CDATA[血肌酐]]></indicator_name>
+        <indicator_name><![CDATA[ccr]]></indicator_name>
         <indicator_ename><![CDATA[WBC]]></indicator_ename>
         <exam_result><![CDATA[3]]></exam_result>
+        <exam_result_unit><![CDATA[mg/dL]]></exam_result_unit>
+        <reference_result><![CDATA[5.00-9.00]]></reference_result>
+        <upper_limit><![CDATA[9.00]]></upper_limit>
+        <lower_limit><![CDATA[5.00]]></lower_limit>
+        <critical_flag><![CDATA[1]]></critical_flag>
+      </ipt_exam_item>
+      <ipt_exam_item>
+        <report_id><![CDATA[rid2_{{gp}}]]></report_id>
+        <report_item_id><![CDATA[0222]]></report_item_id>
+        <indicator_code><![CDATA[肾小球滤过率]]></indicator_code>
+        <indicator_name><![CDATA[肾小球滤过率]]></indicator_name>
+        <indicator_ename><![CDATA[SXQ]]></indicator_ename>
+        <exam_result><![CDATA[1]]></exam_result>
         <exam_result_unit><![CDATA[mg/dL]]></exam_result_unit>
         <reference_result><![CDATA[5.00-9.00]]></reference_result>
         <upper_limit><![CDATA[9.00]]></upper_limit>
