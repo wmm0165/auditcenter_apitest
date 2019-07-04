@@ -17,8 +17,8 @@ class TestWh(unittest.TestCase):
 
     def test_opt_one(self):
         tem = Template()
-        # tem.send_data('ipt_w_h', '不传ccr和scr_1.txt', **tem.change_data)
-        # engine = tem.get_opt_engineid('opt_ccr', '不传ccr和scr_1.txt')
+        # tem.send_data('ipt_w_h', '不传ccr和scr', **tem.change_data)
+        # engine = tem.get_opt_engineid('opt_ccr', '不传ccr和scr')
         # res = tem.get_opt_recipeInfo(engine,0)
         # outpatient = res['data']['outpatient']
         # print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
@@ -29,7 +29,7 @@ class TestWh(unittest.TestCase):
         print(tem.get_date(0,0).strftime("%Y-%m-%d"))
         # cal_ccr = Ccr('2019-07-01 20:29:00', '1994-03-05')
         tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
-        # engine = tem.get_opt_engineid('opt_ccr', '不传ccr和scr_1.txt')
+        # engine = tem.get_opt_engineid('opt_ccr', '不传ccr和scr')
         # res = tem.get_opt_recipeInfo(engine,0)
         # outpatient = res['data']['outpatient']
         # print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))

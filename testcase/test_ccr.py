@@ -20,39 +20,130 @@ class TestCcr(unittest.TestCase):
     def tearDown(self):
         self.log.get_log().debug("结束执行用例TestCcr...")
 
-    def test_opt_one(self):
+    def test_opt_01(self):
         # ccr与scr都不传,则ccr取默认值90
         tem = Template()
-        # tem.send_data('opt_ccr', '不传ccr和scr_1.txt', **tem.change_data)
-        engine = tem.get_opt_engineid('opt_ccr', '不传ccr和scr_1.txt')
-        res = tem.get_opt_recipeInfo(engine, 0)
+        # tem.send_data('opt_ccr', '不传ccr和scr', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '不传ccr和scr',1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
         outpatient = res['data']['outpatient']
         print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
         self.assertEqual(outpatient['ccr'], "90.0(预设值)")
+        ids = [engineid]
+        tem.audit_multi(1,*ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "90.0(预设值)")
 
     def test_opt_two(self):
-        # 检验中传入scr,则ccr取传入值
+        # 25岁 男 mg/dl scr为9.00mg/dL
         tem = Template()
         cal_ccr = Ccr(tem.get_ymd(0, 0), '1994-03-05')
-        tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
-        # engine = tem.get_opt_engineid('opt_ccr', '不传ccr和scr_1.txt')
-        # res = tem.get_opt_recipeInfo(engine,0)
-        # outpatient = res['data']['outpatient']
-        # print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '传ccr_1.txt',1)
+        res = tem.get_opt_recipeInfo(engineid,0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
         expect = cal_ccr.ccr_calculate(sex='男', unit='mg/dl', age=cal_ccr.y, weight=60, scr=9)
         print(expect)
-        # self.assertEqual(outpatient['ccr'],"90.0(预设值)")
+        self.assertEqual(outpatient['ccr'],"10.6481(计算值)")
+        ids = [engineid]
+        tem.audit_multi(1,*ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "10.6481(计算值)")
+    def test_opt_03(self):
+        # 25岁 女 mg/dl scr为9.00mg/dL
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '1994-03-05')
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '3',1)
+        res = tem.get_opt_recipeInfo(engineid,0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        expect = cal_ccr.ccr_calculate(sex='女', unit='mg/dl', age=cal_ccr.y, weight=60, scr=9)
+        print(expect)
+        self.assertEqual(outpatient['ccr'],"9.0509(计算值)")
+        ids = [engineid]
+        tem.audit_multi(1,*ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "9.0509(计算值)")
+
+    def test_opt_04(self):
+        # 25岁 男 umol/l scr为9.00umol/l
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '1994-03-05')
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '4', 1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        expect = cal_ccr.ccr_calculate(sex='男', unit='umol/L', age=cal_ccr.y, weight=60, scr=9)
+        print(expect)
+        self.assertEqual(outpatient['ccr'], "937.2453(计算值)")
+        ids = [engineid]
+        tem.audit_multi(1, *ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "937.2453(计算值)")
+
+    def test_opt_05(self):
+        # 25岁 女 umol/l scr为9.00umol/l
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '1994-03-05')
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '5', 1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        expect = cal_ccr.ccr_calculate(sex='女', unit='umol/L', age=cal_ccr.y, weight=60, scr=9)
+        print(expect)
+        self.assertEqual(outpatient['ccr'], "796.6585(计算值)")
+        ids = [engineid]
+        tem.audit_multi(1, *ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "796.6585(计算值)")
+    def test_opt_06(self):
+        # 19岁 男 umol/l scr为9.00umol/l  --测试不通过
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '2000-03-05')
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '6', 1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        expect = cal_ccr.ccr_default_weight(sex='男', unit='umol/L', age=cal_ccr.y,  scr=9)
+        print(expect)
+        self.assertEqual(outpatient['ccr'], "986.1450(计算值)")
+        ids = [engineid]
+        tem.audit_multi(1, *ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "986.1450(计算值)")
+
+    def test_opt_07(self):
+        # 19岁 女 umol/l scr为9.00umol/l
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '2000-03-05')
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '7', 1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        expect = cal_ccr.ccr_default_weight(sex='女', unit='umol/L', age=cal_ccr.y,  scr=9)
+        print(expect)
+        self.assertEqual(outpatient['ccr'], "698.5194(计算值)")
+        ids = [engineid]
+        tem.audit_multi(1, *ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "698.5194(计算值)")
 
     def test_opt_three(self):
         tem = Template()
         tem.send_data('opt_ccr', '传scr但是检验已失效_1.txt', **tem.change_data)
 
-    def test_opt_04(self):
+    def test_opt_11(self):
         # scr不在检验有效期
         tem = Template()
         tem.send_data('opt_ccr', '1', **tem.change_data)
 
-    def test_opt_05(self):
+    def test_opt_12(self):
         # scr在检验有效期
         tem = Template()
         tem.send_data('opt_ccr', '2', **tem.change_data)
@@ -287,8 +378,65 @@ class TestCcr(unittest.TestCase):
         res = tem.get_ipt_patient(engineid, 1)
         self.assertEqual(res['data']['ccr'], "90.0(预设值)")
 
+    def test_ipt_16(self):
+        # 16岁 男  scr为1.00umol/L
+        tem = Template()
+        # tem.send_data('ipt_ccr', '6', **tem.change_data)
+        cal_ccr = Ccr(tem.get_ymd(-1,0), '2003-03-05')
+        c1 = cal_ccr.ccr_default_weight(sex='男', unit='umol/L', age=cal_ccr.y, scr=1)
+        print(c1)
+        engineid = tem.get_ipt_engineid('ipt_ccr', '12', 1)
+        res = tem.get_ipt_patient(engineid, 0)
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        self.assertEqual(res['data']['ccr'], "8610.2689(计算值)")
+        ids = [engineid]
+        tem.audit_multi(3, *ids)
+        res = tem.get_ipt_patient(engineid, 1)
+        self.assertEqual(res['data']['ccr'], "8610.2689(计算值)")
+    def test_ipt_17(self):
+        # 16岁 女 umol/L scr为1.00umol/L
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(-1,0), '2003-03-05')
+        c1 = cal_ccr.ccr_default_weight(sex='女', unit='umol/L', age=cal_ccr.y, scr=1)
+        print(c1)
+        engineid = tem.get_ipt_engineid('ipt_ccr', '13', 1)
+        res = tem.get_ipt_patient(engineid, 0)
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        self.assertEqual(res['data']['ccr'], "6438.6773(计算值)")
+        ids = [engineid]
+        tem.audit_multi(3, *ids)
+        res = tem.get_ipt_patient(engineid, 1)
+        self.assertEqual(res['data']['ccr'], "6438.6773(计算值)")
 
+    def test_ipt_18(self):
+        # scr传错误单位,返回预设值
+        tem = Template()
+        engineid = tem.get_ipt_engineid('ipt_ccr', '14', 1)
+        res = tem.get_ipt_patient(engineid, 0)
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        self.assertEqual(res['data']['ccr'], "90.0(预设值)")
+        ids = [engineid]
+        tem.audit_multi(3, *ids)
+        res = tem.get_ipt_patient(engineid, 1)
+        self.assertEqual(res['data']['ccr'], "90.0(预设值)")
+    def test_ipt_19(self):
+        # scr传错误单位,返回预设值
+        tem = Template()
 
+        tem.send_data('ipt_ccr', '16', **tem.change_data)
+        tem.send_data('ipt_ccr', '15', **tem.change_data)
+        # engineid = tem.get_ipt_engineid('ipt_ccr', '16', 1)
+        # res = tem.get_ipt_patient(engineid, 0)
+        # print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        # self.assertEqual(res['data']['ccr'], "90.0(预设值)")
+        # ids = [engineid]
+        # tem.audit_multi(3, *ids)
+        # res = tem.get_ipt_patient(engineid, 1)
+        # self.assertEqual(res['data']['ccr'], "90.0(预设值)")
+    def test_ipt_20(self):
+        # scr传错误单位,返回预设值
+        tem = Template()
+        tem.send_data('ipt_ccr','17',**tem.change_data)
 
 
 

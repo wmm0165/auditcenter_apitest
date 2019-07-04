@@ -53,7 +53,11 @@ class Template:
                             "{{df3}}": str(self.get_date(-1,-3)),
                             "{{df2}}": str(self.get_date(-1,-1)),
                             "{{df1}}": str(self.get_date(-1,-1)),
-                            "{{dt}}": str(self.get_date(0,0))
+                            "{{dt}}": str(self.get_date(0,0)),
+                            "{{f5}}": str(self.get_date(-5,0)),
+                            "{{f4}}": str(self.get_date(-4, 0)),
+                            "{{f3}}": str(self.get_date(-3, 0)),
+                            "{{f2}}": str(self.get_date(-2, 0)),
                             }
 
     # 获取日期格式为%Y-%m-%d %H:%M:%S：，n可取0（表示当前日期），正（表示当前日期+n天），负（表示当前日期-n天）
@@ -89,6 +93,7 @@ class Template:
         xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
         send_data_url = "http://10.1.1.94:10000/api/v1/auditcenter"
         # send_data_url = "http://192.168.1.193:8080/api/v1/auditcenter"
+        # send_data_url = "http://10.1.1.71:9999/auditcenter/api/v1/auditcenter"
         headers = {"Content-Type": "text/plain"}
         print(xml_path)
         with open(xml_path, encoding="utf-8") as fp:
@@ -113,15 +118,15 @@ class Template:
         return self.session.post(url=url, data=ss.encode("utf-8"), headers=headers)
 
     # 查询待审列表，获取引擎id（注意：右侧待审任务只能展示10条，所以10条之外的数据查询不到）
-    def get_opt_engineid(self, dir_name, xml_name):
+    def get_opt_engineid(self, dir_name, xml_name,num):
         self.send_data(dir_name, xml_name, **self.change_data)
-        time.sleep(5)
-        num = re.findall('\d+', xml_name)  # 获取文件名中的数字
-        recipeno = 'r' + ''.join(num) + '_' + self.change_data['{{ts}}']
+        time.sleep(4)
+        # num = re.findall('\d+', xml_name)  # 获取文件名中的数字
+        recipeno = 'r' + ''.join(str(num)) + '_' + self.change_data['{{ts}}']
         param = {
             "recipeNo": recipeno
         }
-        url = "http://10.1.1.94:10000/api/v1/opt/selNotAuditOptList"
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '查询待审门诊任务列表')
         res = self.post_json(url, param)
         # print(res)
         # print(res['data']['optRecipeList'][0]['optRecipe']['id'])
