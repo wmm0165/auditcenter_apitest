@@ -83,7 +83,7 @@ class Ccr:
 
     # 根据出生日期计算年龄
     # 门诊   recipe_time - birthday
-    # 住院   run_engine_time - birthday
+    # 住院   run_engine_time（当前时间） - birthday
     def calculate_age(self, recipe_time_str, birthday_str):
         recipe_time = datetime.datetime.strptime(recipe_time_str, '%Y-%m-%d')
         birthday = datetime.datetime.strptime(birthday_str, '%Y-%m-%d')
@@ -203,6 +203,6 @@ if __name__ == '__main__':
     # print(b1)
     print(c1)
     # print(d1)
-    a = ((140 - 25) * 56) / (72 * 2) * 0.85  # 公式一
+    a = ((140 - 25) * 56) / (72 * 2) # 公式一
     print(a)
 print(44.72*0.85)
