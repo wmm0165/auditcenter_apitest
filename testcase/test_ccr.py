@@ -170,9 +170,46 @@ class TestCcr(unittest.TestCase):
         res = tem.get_opt_recipeInfo(engineid, 1)
         self.assertEqual(res['data']['outpatient']['ccr'], "698.5194(计算值)")
 
-    def test_opt_three(self):
+    def test_opt_14(self):
+        # 19岁 女 umol/l scr为9.00umol/l
         tem = Template()
-        tem.send_data('opt_ccr', '传scr但是检验已失效_1.txt', **tem.change_data)
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '2000-03-05')
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '10', 1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        # expect = cal_ccr.ccr_default_weight(sex='女', unit='umol/L', age=cal_ccr.y, scr=9)
+        # print(expect)
+        self.assertEqual(outpatient['ccr'], "9.0")
+        ids = [engineid]
+        tem.audit_multi(1, *ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "9.0")
+
+    def test_opt_15(self):
+        # 19岁 女 umol/l scr为9.00umol/l
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '2000-03-05')
+        tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '10', 1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        # expect = cal_ccr.ccr_default_weight(sex='女', unit='umol/L', age=cal_ccr.y, scr=9)
+        # print(expect)
+        self.assertEqual(outpatient['ccr'], "9.0")
+        ids = [engineid]
+        tem.audit_multi(1, *ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "9.0")
+
+
+    def test_opt_16(self):
+        # 两个任务里的检验都是9.0
+        tem = Template()
+        tem.send_data('opt_ccr', 'a2', **tem.change_data)
+        tem.send_data('opt_ccr', 'a3', **tem.change_data)
 
     def test_opt_11(self):
         # scr不在检验有效期
