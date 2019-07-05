@@ -113,13 +113,47 @@ class TestCcr(unittest.TestCase):
         print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
         expect = cal_ccr.ccr_default_weight(sex='男', unit='umol/L', age=cal_ccr.y, scr=9)
         print(expect)
-        self.assertEqual(outpatient['ccr'], "986.1450(计算值)")
+        self.assertEqual(outpatient['ccr'], "986.1451(计算值)")
         ids = [engineid]
         tem.audit_multi(1, *ids)
         res = tem.get_opt_recipeInfo(engineid, 1)
-        self.assertEqual(res['data']['outpatient']['ccr'], "986.1450(计算值)")
+        self.assertEqual(res['data']['outpatient']['ccr'], "986.1451(计算值)")
 
     def test_opt_07(self):
+        # 16岁 女 umol/l scr为9.00umol/l
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '2003-03-05')
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '8', 1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        expect = cal_ccr.ccr_default_weight(sex='女', unit='umol/L', age=cal_ccr.y, scr=9)
+        print(expect)
+        self.assertEqual(outpatient['ccr'], "715.4086(计算值)")
+        ids = [engineid]
+        tem.audit_multi(1, *ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "715.4086(计算值)")
+
+    def test_opt_09(self):
+        # 16岁 男 umol/l scr为9.00umol/l  --测试不通过
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '2003-03-05')
+        # tem.send_data('opt_ccr', '传ccr_1.txt', **tem.change_data)
+        engineid = tem.get_opt_engineid('opt_ccr', '9', 1)
+        res = tem.get_opt_recipeInfo(engineid, 0)
+        outpatient = res['data']['outpatient']
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        expect = cal_ccr.ccr_default_weight(sex='男', unit='umol/L', age=cal_ccr.y, scr=9)
+        print(expect)
+        self.assertEqual(outpatient['ccr'], "956.6965(计算值)")
+        ids = [engineid]
+        tem.audit_multi(1, *ids)
+        res = tem.get_opt_recipeInfo(engineid, 1)
+        self.assertEqual(res['data']['outpatient']['ccr'], "956.6965(计算值)")
+
+    def test_opt_13(self):
         # 19岁 女 umol/l scr为9.00umol/l
         tem = Template()
         cal_ccr = Ccr(tem.get_ymd(0, 0), '2000-03-05')
@@ -425,8 +459,9 @@ class TestCcr(unittest.TestCase):
 
     def test_ipt_19(self):
         tem = Template()
-        tem.send_data('ipt_ccr', '16', **tem.change_data)
         tem.send_data('ipt_ccr', '15', **tem.change_data)
+        tem.send_data('ipt_ccr', '16', **tem.change_data)
+
         # engineid = tem.get_ipt_engineid('ipt_ccr', '16', 1)
         # res = tem.get_ipt_patient(engineid, 0)
         # print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
@@ -437,15 +472,97 @@ class TestCcr(unittest.TestCase):
         # self.assertEqual(res['data']['ccr'], "90.0(预设值)")
 
     def test_ipt_20(self):
-        #
+        # 一个xml传入两组药,如果两组药的使用时间有交叉,则两个任务都能取到ccr
         tem = Template()
-        tem.send_data('ipt_ccr', '17', **tem.change_data)
+        # tem.send_data('ipt_ccr', '17', **tem.change_data)
+        engineid = tem.get_ipt_engineid('ipt_ccr', '17', 1)
+        res = tem.get_ipt_patient(engineid, 0)
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        self.assertEqual(res['data']['ccr'], "3.0")
+        ids = [engineid]
+        tem.audit_multi(3, *ids)
+        res = tem.get_ipt_patient(engineid, 1)
+        self.assertEqual(res['data']['ccr'], "3.0")
 
     def test_ipt_21(self):
-        # f2的检验，一组内两个药的生效时间分别为f3,d,第一个切片ccr90，第二个切片ccr为3，那么ccr该 怎么取值？
+        # f2的检验，一组内两个药的生效时间分别为f3,d,第一个切片ccr90(预设值)，第二个切片ccr为3，那么ccr取3
         tem = Template()
         tem.send_data('ipt_ccr', '18', **tem.change_data)
-        tem.send_data('ipt_ccr', '19', **tem.change_data)
+        engineid = tem.get_ipt_engineid('ipt_ccr', '19', 1)
+        res = tem.get_ipt_patient(engineid, 0)
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        self.assertEqual(res['data']['ccr'], "3.0")
+        ids = [engineid]
+        tem.audit_multi(3, *ids)
+        res = tem.get_ipt_patient(engineid, 1)
+        self.assertEqual(res['data']['ccr'], "3.0")
+    def test_ipt_22(self):
+        # 医嘱生效时间前有两个检验,则取最新的检验,且如果ccr和血肌酐都有则取ccr
+        tem = Template()
+        cal_ccr = Ccr(tem.get_ymd(0, 0), '1994-03-05')
+        c1 = cal_ccr.ccr_calculate(sex='女', unit='mg/dL', age=cal_ccr.y,weight=60, scr=1)
+        print(c1)
+        tem.send_data('ipt_ccr', 'e1', **tem.change_data)
+        tem.send_data('ipt_ccr', 'e2', **tem.change_data)
+        engineid = tem.get_ipt_engineid('ipt_ccr', 'e3', 1)
+        res = tem.get_ipt_patient(engineid, 0)
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        # try:
+        self.assertEqual(res['data']['ccr'], "4.0")
+        # except AssertionError as e:
+        #     print(e)
+        ids = [engineid]
+        tem.audit_multi(3, *ids)
+        res = tem.get_ipt_patient(engineid, 1)
+        self.assertEqual(res['data']['ccr'], "4.0")
+
+    def test_ipt_23(self):
+        tem = Template()
+        # 待审医嘱作为合并医嘱被删除后,原任务重新跑引擎,ccr值在已审页面展示正确
+        tem.send_data('ipt_delete', 'a1', **tem.change_data)  # 发草药嘱
+        tem.send_data('ipt_delete', 'a2', **tem.change_data)  # 发药嘱
+        tem.send_delete('ipt_delete', 'a3', **tem.change_data)  # 删除草药嘱
+        # 待审页面获取药嘱的引擎id
+        param = {
+            "patientId": tem.change_data['{{ts}}']
+        }
+        url = tem.conf.get('auditcenter', 'address') + tem.conf.get('api', '查询待审住院任务列表')
+        res = tem.post_json(url, param)
+        engineid = res['data']['engineInfos'][0]['id']
+        res = tem.get_ipt_patient(engineid, 0)
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        # try:
+        self.assertEqual(res['data']['ccr'], "90.0(预设值)")
+        # except AssertionError as e:
+        #     print(e)
+        ids = [engineid]
+        tem.audit_multi(3, *ids)
+        res = tem.get_ipt_patient(engineid, 1)
+        self.assertEqual(res['data']['ccr'], "90.0(预设值)")
+    def test_ipt_24(self):
+        tem = Template()
+        # 待审医嘱作为合并医嘱被删除后,原任务重新跑引擎,ccr值在已审页面展示正确
+        tem.send_data('ipt_delete', 'a2', **tem.change_data)  # 发药嘱
+        tem.send_data('ipt_delete', 'a1', **tem.change_data)  # 发草药嘱
+        tem.send_delete('ipt_delete', 'a4', **tem.change_data)  # 删除药嘱
+        # 待审页面获取药嘱的引擎id
+        param = {
+            "patientId": tem.change_data['{{ts}}']
+        }
+        url = tem.conf.get('auditcenter', 'address') + tem.conf.get('api', '查询待审住院任务列表')
+        res = tem.post_json(url, param)
+        engineid = res['data']['engineInfos'][0]['id']
+        res = tem.get_ipt_patient(engineid, 0)
+        print(json.dumps(res, indent=2, sort_keys=False, ensure_ascii=False))
+        # try:
+        self.assertEqual(res['data']['ccr'], "90.0(预设值)")
+        # except AssertionError as e:
+        #     print(e)
+        ids = [engineid]
+        tem.audit_multi(3, *ids)
+        res = tem.get_ipt_patient(engineid, 1)
+        self.assertEqual(res['data']['ccr'], "90.0(预设值)")
+
 
 
 if __name__ == '__main__':

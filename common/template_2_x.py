@@ -103,6 +103,20 @@ class Template:
             ss = ss.replace(k, change[k])
         print(ss)
         return self.session.post(url=send_data_url, data=ss.encode("utf-8"), headers=headers)
+    def send_delete(self, dir_name, xml_name, **change):
+        time.sleep(1)  # 审方系统问题，每次发数据需要时间间隔
+        # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
+        xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
+        send_delete_url = "http://10.1.1.94:10000/api/v1/cancelgroupdrug"
+        headers = {"Content-Type": "text/plain"}
+        print(xml_path)
+        with open(xml_path, encoding="utf-8") as fp:
+            body = fp.read()
+        ss = body
+        for k in change:
+            ss = ss.replace(k, change[k])
+        print(ss)
+        return self.session.post(url=send_delete_url, data=ss.encode("utf-8"), headers=headers)
 
     def doc(self, dir_name, xml_name, **change):
         xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
