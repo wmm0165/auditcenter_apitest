@@ -223,6 +223,7 @@ class Template:
     def ipt_audit(self, gp, engineid, audit_type):
         url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '医嘱详情审核')
         # 医嘱详情审核打回
+        param = ''
         if audit_type == 0:
             param = {
                 "groupOrderList": [{
@@ -259,6 +260,36 @@ class Template:
                     "orderType": 1
                 }]
             }
+        self.post_json(url, param)
+    def chat_ipt_doc(self,engineid):
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '客户端发送理由')
+        param = {
+        "hospitalCode": "H0003",
+        "userId": "09",
+        "source": "住院",
+        "attachKey": engineid,
+        "message": "这是医生理由哦",
+        "userRole": "医生"
+        }
+        self.post_json(url, param)
+    # source = 1指门诊 source = 3 指住院
+    def chat_pharm(self,source,engineid):
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '审方端发送理由')
+        param = {
+        "zoneId": 1,
+        "category": source,
+        "attachKey": engineid,
+        "message": "这是药师消息哦",
+        "userRole": "药师"
+        }
+        self.post_json(url, param)
+
+    def query_chat(self,source,zoneid,engineid):
+        url = (self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审查询记录'))%(source,zoneid,engineid)
+        print(url)
+        return self.get(url)
+
+
 
 
 if __name__ == '__main__':
@@ -266,3 +297,4 @@ if __name__ == '__main__':
     print(t.get_ymd(-1,-6))
     # ids = [99098]
     # t.audit_multi(1, *ids)
+    t.query_chat(1,1,1)

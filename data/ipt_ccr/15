@@ -45,8 +45,8 @@
       <order_dept_id><![CDATA[011]]></order_dept_id>
       <order_dept_name><![CDATA[中心ICU]]></order_dept_name>
       <doc_group><![CDATA[神经内科-医生王组]]></doc_group>
-      <order_doc_id><![CDATA[{{docId}}]]></order_doc_id>
-      <order_doc_name><![CDATA[{{docName}}]]></order_doc_name>
+      <order_doc_id><![CDATA[09]]></order_doc_id>
+      <order_doc_name><![CDATA[王瑞]]></order_doc_name>
       <order_doc_title><![CDATA[231]]></order_doc_title>
       <order_type><![CDATA[1]]></order_type>
       <drug_purpose><![CDATA[药嘱目的]]></drug_purpose>
