@@ -38,22 +38,24 @@ class Template:
         res1 = self.session.get(url=start_sf_url)  # 开始审方
         group_no = random.randint(1, 1000000)
         cgroup_no = random.randint(1, 1000000)
-        self.change_data = {"{{ts}}": str(self.get_ts(0,0)),
+        ggroup_no = random.randint(1, 1000000)
+        self.change_data = {"{{ts}}": str(self.get_ts(0,0)),     # 今天时间戳
                             "{{tf2}}": str(self.get_ts(-1, -2)),
                             "{{tf1}}": str(self.get_ts(-1, -1)),
-                            "{{t}}": str(self.get_ts(-1,0)),
-                            "{{d}}": str(self.get_date(-1,0)),
+                            "{{t}}": str(self.get_ts(-1,0)),     # 昨天时间戳
+                            "{{d}}": str(self.get_date(-1,0)),   # 昨天时间
                             "{{tf3}}": str(self.get_ts(-1,-3)),
                             "{{df4}}": str(self.get_date(-1,-4)),
                             "{{tb1}}": str(self.get_ts(-1,+1)),
                             "{{db1}}": str(self.get_date(-1,+1)),
                             "{{gp}}": str(group_no),
                             "{{cgp}}": str(cgroup_no),
+                            "{{ggp}}": str(ggroup_no),
                             "{{df6}}": str(self.get_date(-1,-6)),
                             "{{df3}}": str(self.get_date(-1,-3)),
                             "{{df2}}": str(self.get_date(-1,-1)),
                             "{{df1}}": str(self.get_date(-1,-1)),
-                            "{{dt}}": str(self.get_date(0,0)),
+                            "{{dt}}": str(self.get_date(0,0)),    # 今天时间
                             "{{f5}}": str(self.get_date(-5,0)),
                             "{{f4}}": str(self.get_date(-4, 0)),
                             "{{f3}}": str(self.get_date(-3, 0)),
@@ -167,7 +169,7 @@ class Template:
         self.send_data(dir_name, xml_name, **self.change_data)
         time.sleep(5)
         param = {
-            "patientId": self.change_data['{{ts}}']
+                "patientId": self.change_data['{{ts}}']
         }
         url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '查询待审住院任务列表')
         res = self.post_json(url, param)
