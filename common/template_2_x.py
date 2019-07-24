@@ -48,6 +48,7 @@ class Template:
                             "{{df4}}": str(self.get_date(-1,-4)),
                             "{{tb1}}": str(self.get_ts(-1,+1)),
                             "{{db1}}": str(self.get_date(-1,+1)),
+                            "{{dtb1}}": str(self.get_date(+1, 0)),
                             "{{gp}}": str(group_no),
                             "{{cgp}}": str(cgroup_no),
                             "{{ggp}}": str(ggroup_no),
@@ -95,7 +96,7 @@ class Template:
         xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
         send_data_url = "http://10.1.1.94:10000/api/v1/auditcenter"
         # send_data_url = "http://192.168.1.193:8080/api/v1/auditcenter"
-        # send_data_url = "http://10.1.1.71:9999/auditcenter/api/v1/auditcenter"
+        # send_data_url = "http://10.1.1.172:9999/auditcenter/api/v1/auditcenter"
         headers = {"Content-Type": "text/plain"}
         print(xml_path)
         with open(xml_path, encoding="utf-8") as fp:

@@ -22,7 +22,7 @@ class TestLabel(unittest.TestCase):
     def test_opt_01(self):
         # 开具处方1未审核，则该任务打待处理标签
         engineid1 = self.tem.get_opt_engineid("opt", "处方一", 1)
-        engineid2 = self.tem.get_opt_engineid("opt", "处方二 ", 2)
+        # engineid2 = self.tem.get_opt_engineid("opt", "处方二 ", 2)
 
     def test_ipt_01(self):
         engineid1 = self.tem.get_ipt_engineid("ipt","医嘱一",1)
@@ -35,6 +35,10 @@ class TestLabel(unittest.TestCase):
     def test_ipt_03(self):
         engineid = self.tem.get_ipt_engineid("ipt", "一个药嘱一个草药嘱", 1)
         engineid = self.tem.get_ipt_engineid("ipt", "同患者再开药", 1)
+
+    def test_ipt_04(self):
+        # engineid = self.tem.get_ipt_engineid("ipt", "生效时间为明天", 1)
+        self.tem.send_data('ipt', '生效时间为明天', **self.tem.change_data)
 
 
 
