@@ -54,6 +54,7 @@ class Template:
                             "{{f3}}": str(self.get_date(-3, 0)),
                             "{{f2}}": str(self.get_date(-2, 0)),
                             }
+
     # 获取日期格式为%Y-%m-%d %H:%M:%S：，n可取0（表示当前日期），正（表示当前日期+n天），负（表示当前日期-n天）
     def get_ymd(self, d, h):
         date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
@@ -64,8 +65,9 @@ class Template:
         date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
             "%Y-%m-%d %H:%M:%S")
         return date
+
     # 获取指定日期的时间戳
-    def get_ts(self,d, h):
+    def get_ts(self, d, h):
         date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
             "%Y-%m-%d %H:%M:%S")
         ts = int(time.mktime(time.strptime(date, "%Y-%m-%d %H:%M:%S")))  # 获取10位时间戳
@@ -110,11 +112,11 @@ class Template:
         return self.session.post(url=url, data=ss.encode("utf-8"), headers=headers)
 
     # 查询待审列表，获取引擎id（注意：右侧待审任务只能展示10条，所以10条之外的数据查询不到）
-    def get_opt_engineid(self, dir_name, xml_name):
+    def get_opt_engineid(self, dir_name, xml_name, num):
         self.send_data(dir_name, xml_name, **self.change_data)
-        time.sleep(5)
-        num = re.findall('\d+', xml_name)  # 获取文件名中的数字
-        recipeno = 'r' + ''.join(num) + '_' + self.change_data['{{ts}}']
+        time.sleep(4)
+        # num = re.findall('\d+', xml_name)  # 获取文件名中的数字
+        recipeno = 'r' + ''.join(str(num)) + '_' + self.change_data['{{ts}}']
         param = {
             "recipeNo": recipeno
         }

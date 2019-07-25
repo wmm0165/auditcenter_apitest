@@ -25,9 +25,9 @@ class TestIm(unittest.TestCase):
         tem = Template()
         # tem.send_data('ipt_ccr', '15', **tem.change_data)
         # tem.send_data('ipt_ccr', '16', **tem.change_data)
-        engineid1 = tem.get_ipt_engineid('ipt_ccr', '15', 1)  # 任务一
-        engineid2 = tem.get_ipt_engineid('ipt_ccr', '16', 2)  # 任务二
-        gp = tem.change_data['{{gp}}']
+        # engineid1 = tem.get_ipt_engineid("ipt","医嘱一",1)
+        # engineid2 = tem.get_ipt_engineid("ipt","医嘱二",2)
+        # gp = tem.change_data['{{gp}}']
         # print(gp)
         # tem.ipt_audit(gp, engineid1, 0)  # 审核打回任务一
         # 医生发送理由;这是医生理由哦
