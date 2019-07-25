@@ -225,7 +225,19 @@ class Template:
             }
         self.post_json(url, param)
 
+    def get_ipt_patient(self,engineid,type):
+        if type == 0:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '待审住院获取患者信息') + '?id='+ str(engineid)
+        else:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审住院获取患者信息') + '?id=' + str(engineid)
+        return self.get(url)
 
+    def get_ipt_orderlist(self,engineid,type):
+        if type == 0:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '待审住院获取药嘱信息') + '?id='+ str(engineid)
+        else:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审住院获取药嘱信息') + '?id=' + str(engineid)
+        return self.get(url)
 
 
 

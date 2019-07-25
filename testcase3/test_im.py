@@ -19,11 +19,18 @@ class TestIm(unittest.TestCase):
         self.chat = Chat()
 
     def test_ipt_01(self):
+        # 住院只有已审当前任务有记录按钮，其作为合并任务时没有
         engineid1 = self.tem.get_ipt_engineid("ipt", "医嘱一", 1)
         engineid2 = self.tem.get_ipt_engineid("ipt", "医嘱二", 2)
         self.tem.ipt_audit(self.tem.change_data['{{gp}}'],engineid1,0) # 审核打回任务一
         self.chat.doc_ipt_send(engineid1,self.tem.change_data['{{gp}}'])
         self.chat.phar_ipt_send(engineid1,self.tem.change_data['{{gp}}'])
+        flag = self.chat.ipt_chat_flag(engineid1,self.tem.change_data['{{gp}}'])
+        self.assertEqual(flag['data']['chatFlag'],1)
+        res = self.chat.phar_ipt_query_chat(engineid1,self.tem.change_data['{{gp}}'])
+        self.assertEqual(len(res['data']), 2)  # 药师端
+        res2 = self.chat.doc_ipt_query(engineid1,self.tem.change_data['{{gp}}'])
+        self.assertEqual(len(res['data']), 2)
 
 
 
