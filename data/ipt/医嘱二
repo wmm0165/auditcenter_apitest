@@ -52,8 +52,8 @@
       <order_type><![CDATA[1]]></order_type>
       <drug_purpose><![CDATA[药嘱目的]]></drug_purpose>
       <group_no><![CDATA[{{cgp}}]]></group_no>
-      <drug_id><![CDATA[AA0111]]></drug_id>
-      <drug_name><![CDATA[甲硝唑凝胶 ♦]]></drug_name>
+      <drug_id><![CDATA[502301]]></drug_id>
+      <drug_name><![CDATA[过氧化氢溶液]]></drug_name>
       <count_unit><![CDATA[6]]></count_unit>
       <pack_unit><![CDATA[片]]></pack_unit>
       <manufacturer_id><![CDATA[12]]></manufacturer_id>
@@ -75,7 +75,7 @@
       <check_nurse_id><![CDATA[01]]></check_nurse_id>
       <check_nurse_name><![CDATA[陆羽]]></check_nurse_name>
       <order_valid_time><![CDATA[{{f3}}]]></order_valid_time>
-      <order_invalid_time><![CDATA[{{d}}]]></order_invalid_time>
+      <order_invalid_time><![CDATA[]]></order_invalid_time>
       <special_prompt><![CDATA[忌辛辣]]></special_prompt>
       <skin_test_time><![CDATA[{{df1}}]]></skin_test_time>
       <skin_test_flag><![CDATA[0]]></skin_test_flag>

@@ -143,13 +143,12 @@ class Template:
             engineid = res['data']['engineInfos'][1]['id']
         return engineid
 
-    def opt_audit(self, dir_name, xml_name, audit_type):
-        engineid = self.get_opt_engineid(dir_name, xml_name)
+    def opt_audit(self, engineid, audit_type):
         url = ''
         param = {}
         # 处方详情审核通过
-        if audit_type == '2':
-            url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '处方详情审核通过')
+        if audit_type == 2:
+            url = self.conf.get('auditcenter','address') + self.conf.get('api', '处方详情审核通过')
             param = {
                 "optRecipeId": engineid,
                 "auditResult": ""
@@ -186,6 +185,7 @@ class Template:
 
     def ipt_audit(self, gp, engineid, audit_type):
         url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '医嘱详情审核')
+        param = ''
         # 医嘱详情审核打回
         if audit_type == 0:
             param = {
@@ -223,6 +223,18 @@ class Template:
                     "orderType": 1
                 }]
             }
+        self.post_json(url, param)
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':

@@ -182,8 +182,7 @@ class Template:
             engineid = res['data']['engineInfos'][1]['id']
         return engineid
 
-    def opt_audit(self, dir_name, xml_name, audit_type):
-        engineid = self.get_opt_engineid(dir_name, xml_name)
+    def opt_audit(self, engineid, audit_type):
         url = ''
         param = {}
         # 处方详情审核通过

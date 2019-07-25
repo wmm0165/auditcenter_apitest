@@ -74,7 +74,7 @@
       <check_nurse_id><![CDATA[017]]></check_nurse_id>
       <check_nurse_name><![CDATA[陆羽7]]></check_nurse_name>
       <order_valid_time><![CDATA[{{f5}}]]></order_valid_time>
-      <order_invalid_time><![CDATA[{{f2}}]]></order_invalid_time>
+      <order_invalid_time><![CDATA[]]></order_invalid_time>
       <special_prompt><![CDATA[忌辛辣]]></special_prompt>
       <skin_test_time><![CDATA[{{df1}}]]></skin_test_time>
       <skin_test_flag><![CDATA[0]]></skin_test_flag>
