@@ -49,14 +49,15 @@ class Chat:
     # 医生端获取消息
     def doc_ipt_query(self, engineid, gp):
         url = (
-                          self.audit_url + "/api/v1/queryChatMessageNoLogin?hospitalCode=H0003&userId=09&source=%E4%BD%8F%E9%99%A2&attachKey=%s&attachSecondKey=%s&t=%s") % (
-                  engineid, gp, self.ts)
+                          self.audit_url + "/api/v1/queryChatMessageNoLogin?hospitalCode=H0003&userId=09&source=%s&attachKey=%s&attachSecondKey=%s&t=%s") % (
+                  '%E4%BD%8F%E9%99%A2',engineid, gp, self.ts)
+        # print(url)
         return self.tem.get(url)
 
     def doc_opt_query(self, engineid):
         url = (
-                          self.audit_url + "/api/v1/queryChatMessageNoLogin?hospitalCode=H0003&userId=09&source=%E9%97%A8%E8%AF%8A&attachKey=%s&t=%s") % (
-                  engineid, self.ts)
+                          self.audit_url + "/api/v1/queryChatMessageNoLogin?hospitalCode=H0003&userId=09&source=%s&attachKey=%s&t=%s") % (
+                  '%E9%97%A8%E8%AF%8A',engineid, self.ts)
         return self.tem.get(url)
 
     # 药师端 查看未读消息列表
@@ -132,3 +133,6 @@ class Chat:
         url = (self.audit_url + "/api/v1/queryChatMessage?category=3&zoneId=4&attachKey=%s&attachSecondKey=%s") % (
             engineid, gp)
         return self.tem.get(url)
+if __name__ == '__main__':
+    ca = Chat()
+    ca.doc_ipt_query(1,1)
