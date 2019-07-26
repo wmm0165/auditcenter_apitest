@@ -53,4 +53,6 @@ class TestIm(unittest.TestCase):
         self.assertEqual(flag2['data'][0]['chatFlag'], 1)
         flag3 = self.chat.opt_chat_flag(engineid1, engineid2, 1)
         self.assertEqual(flag3['data'][0]['chatFlag'], 1)
-        # 任务二的合并任务展示记录按钮
+        res = self.chat.doc_opt_query(engineid1)
+        self.assertEqual(len(res['data']), 2)
+

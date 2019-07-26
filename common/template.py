@@ -84,7 +84,7 @@ class Template:
         return self.session.get(url).json()
 
     def send_data(self, dir_name, xml_name, **change):
-        time.sleep(1)  # 审方系统问题，每次发数据需要时间间隔
+        time.sleep(2)  # 审方系统问题，每次发数据需要时间间隔
         # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
         xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
         send_data_url = self.conf.get('login', 'address') + '/auditcenter/api/v1/auditcenter'
