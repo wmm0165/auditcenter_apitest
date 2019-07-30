@@ -12,6 +12,15 @@ import requests
 from config.read_config import ReadConfig
 
 
+def wait(func):
+    # 可以使函数适配任意多的参数
+    def wrapper(*args, **kw):
+        time.sleep(3)
+        return func(*args, **kw)
+
+    return wrapper
+
+
 class Template:
     def __init__(self):
         self.conf = ReadConfig()
@@ -39,25 +48,25 @@ class Template:
         group_no = random.randint(1, 1000000)
         cgroup_no = random.randint(1, 1000000)
         ggroup_no = random.randint(1, 1000000)
-        self.change_data = {"{{ts}}": str(self.get_ts(0,0)),     # 今天时间戳
+        self.change_data = {"{{ts}}": str(self.get_ts(0, 0)),  # 今天时间戳
                             "{{tf2}}": str(self.get_ts(-1, -2)),
                             "{{tf1}}": str(self.get_ts(-1, -1)),
-                            "{{t}}": str(self.get_ts(-1,0)),     # 昨天时间戳
-                            "{{d}}": str(self.get_date(-1,0)),   # 昨天时间
-                            "{{tf3}}": str(self.get_ts(-1,-3)),
-                            "{{df4}}": str(self.get_date(-1,-4)),
-                            "{{tb1}}": str(self.get_ts(-1,+1)),
-                            "{{db1}}": str(self.get_date(-1,+1)),
+                            "{{t}}": str(self.get_ts(-1, 0)),  # 昨天时间戳
+                            "{{d}}": str(self.get_date(-1, 0)),  # 昨天时间
+                            "{{tf3}}": str(self.get_ts(-1, -3)),
+                            "{{df4}}": str(self.get_date(-1, -4)),
+                            "{{tb1}}": str(self.get_ts(-1, +1)),
+                            "{{db1}}": str(self.get_date(-1, +1)),
                             "{{dtb1}}": str(self.get_date(+1, 0)),
                             "{{gp}}": str(group_no),
                             "{{cgp}}": str(cgroup_no),
                             "{{ggp}}": str(ggroup_no),
-                            "{{df6}}": str(self.get_date(-1,-6)),
-                            "{{df3}}": str(self.get_date(-1,-3)),
-                            "{{df2}}": str(self.get_date(-1,-1)),
-                            "{{df1}}": str(self.get_date(-1,-1)),
-                            "{{dt}}": str(self.get_date(0,0)),    # 今天时间
-                            "{{f5}}": str(self.get_date(-5,0)),
+                            "{{df6}}": str(self.get_date(-1, -6)),
+                            "{{df3}}": str(self.get_date(-1, -3)),
+                            "{{df2}}": str(self.get_date(-1, -1)),
+                            "{{df1}}": str(self.get_date(-1, -1)),
+                            "{{dt}}": str(self.get_date(0, 0)),  # 今天时间
+                            "{{f5}}": str(self.get_date(-5, 0)),
                             "{{f4}}": str(self.get_date(-4, 0)),
                             "{{f3}}": str(self.get_date(-3, 0)),
                             "{{f2}}": str(self.get_date(-2, 0)),
@@ -73,8 +82,9 @@ class Template:
         date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
             "%Y-%m-%d %H:%M:%S")
         return date
+
     # 获取指定日期的时间戳
-    def get_ts(self,d, h):
+    def get_ts(self, d, h):
         date = ((datetime.datetime.now() + datetime.timedelta(days=d)) + datetime.timedelta(hours=h)).strftime(
             "%Y-%m-%d %H:%M:%S")
         ts = int(time.mktime(time.strptime(date, "%Y-%m-%d %H:%M:%S")))  # 获取10位时间戳
@@ -106,6 +116,7 @@ class Template:
             ss = ss.replace(k, change[k])
         print(ss)
         return self.session.post(url=send_data_url, data=ss.encode("utf-8"), headers=headers)
+
     def send_delete_1(self, dir_name, xml_name, **change):
         time.sleep(1)  # 审方系统问题，每次发数据需要时间间隔
         # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
@@ -120,6 +131,7 @@ class Template:
             ss = ss.replace(k, change[k])
         print(ss)
         return self.session.post(url=send_delete_url, data=ss.encode("utf-8"), headers=headers)
+
     def send_delete_2(self, dir_name, xml_name, **change):
         time.sleep(1)  # 审方系统问题，每次发数据需要时间间隔
         # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
@@ -134,6 +146,7 @@ class Template:
             ss = ss.replace(k, change[k])
         print(ss)
         return self.session.post(url=send_delete_url, data=ss.encode("utf-8"), headers=headers)
+
     def doc(self, dir_name, xml_name, **change):
         xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
         url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '医生双签')
@@ -148,7 +161,7 @@ class Template:
         return self.session.post(url=url, data=ss.encode("utf-8"), headers=headers)
 
     # 查询待审列表，获取引擎id（注意：右侧待审任务只能展示10条，所以10条之外的数据查询不到）
-    def get_opt_engineid(self, dir_name, xml_name,num):
+    def get_opt_engineid(self, dir_name, xml_name, num):
         self.send_data(dir_name, xml_name, **self.change_data)
         time.sleep(4)
         # num = re.findall('\d+', xml_name)  # 获取文件名中的数字
@@ -163,27 +176,34 @@ class Template:
         return res['data']['optRecipeList'][0]['optRecipe']['id']
 
     # type = 0代表待审页面，type = 1代表已审页面
-    def get_opt_recipeInfo(self,engineid,type):
+    def get_opt_recipeInfo(self, engineid, type):
         if type == 0:
             url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '待审门诊获取患者信息和处方信息') + str(engineid)
         else:
             url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审门诊获取患者信息和处方信息') + str(engineid)
         return self.get(url)
 
-    def get_ipt_patient(self,engineid,type):
+    def get_ipt_patient(self, engineid, type):
         if type == 0:
-            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '待审住院获取患者信息') + '?id='+ str(engineid)
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '待审住院获取患者信息') + '?id=' + str(engineid)
         else:
             url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审住院获取患者信息') + '?id=' + str(engineid)
         return self.get(url)
 
+    @wait
+    def get_opt_auditresult(self, engineid, type):
+        # time.sleep(4)
+        url = ''
+        if type == 1:
+            url = self.conf.get('auditcenter', 'address') + '/api/v1/opt/all/auditResultList/' + str(engineid)
+        return self.get(url)
 
     # 根据patient_id查询待审列表获取引擎id，count=1时，取该患者第二条数据的engineid,count=2时，取该患者第二条数据的engineid
     def get_ipt_engineid(self, dir_name, xml_name, count):
         self.send_data(dir_name, xml_name, **self.change_data)
         time.sleep(5)
         param = {
-                "patientId": self.change_data['{{ts}}']
+            "patientId": self.change_data['{{ts}}']
         }
         url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '查询待审住院任务列表')
         res = self.post_json(url, param)
@@ -195,29 +215,34 @@ class Template:
             engineid = res['data']['engineInfos'][1]['id']
         return engineid
 
-    def opt_audit(self, dir_name, xml_name, audit_type):
-        engineid = self.get_opt_engineid(dir_name, xml_name)
+    @wait
+    def opt_audit(self, engineid, audit_type):
+        """
+        审核门诊任务
+        :param engineid:  任务引擎id
+        :param audit_type: 审核类型，2：审核通过 0：审核打回 1：审核打回(双签)
+        """
+        time.sleep(2)
         url = ''
         param = {}
-        # 处方详情审核通过
-        if audit_type == '2':
-            url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '处方详情审核通过')
+        if audit_type == 2:
+            url = self.conf.get('login', 'address') + self.conf.get('api', '处方详情审核通过')
             param = {
                 "optRecipeId": engineid,
                 "auditResult": ""
             }
-        # 处方详情审核打回
+
         elif audit_type == 0:
-            url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '处方详情审核打回')
+            url = self.conf.get('login', 'address') + self.conf.get('api', '处方详情审核打回')
             param = {
                 "optRecipeId": engineid,
                 "auditResult": "打回必须修改",
                 "operationRecordList": [],
                 "messageStatus": 0
             }
-        # 处方详情审核打回（可双签）
+
         elif audit_type == 1:
-            url = self.conf.get('login', 'address') + '/auditcenter' + self.conf.get('api', '处方详情审核打回')
+            url = self.conf.get('login', 'address') + self.conf.get('api', '处方详情审核打回')
             param = {
                 "optRecipeId": engineid,
                 "auditResult": "打回可双签",
@@ -277,40 +302,37 @@ class Template:
                 }]
             }
         self.post_json(url, param)
-    def chat_ipt_doc(self,engineid):
+
+    def chat_ipt_doc(self, engineid):
         url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '客户端发送理由')
         param = {
-        "hospitalCode": "H0003",
-        "userId": "09",
-        "source": "住院",
-        "attachKey": engineid,
-        "message": "这是医生理由哦",
-        "userRole": "医生"
-        }
-        self.post_json(url, param)
-    # source = 1指门诊 source = 3 指住院
-    def chat_pharm(self,source,engineid):
-        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '审方端发送理由')
-        param = {
-        "zoneId": 1,
-        "category": source,
-        "attachKey": engineid,
-        "message": "这是药师消息哦",
-        "userRole": "药师"
+            "hospitalCode": "H0003",
+            "userId": "09",
+            "source": "住院",
+            "attachKey": engineid,
+            "message": "这是医生理由哦",
+            "userRole": "医生"
         }
         self.post_json(url, param)
 
-    def query_chat(self,source,zoneid,engineid):
-        url = (self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审查询记录'))%(source,zoneid,engineid)
+    # source = 1指门诊 source = 3 指住院
+    def chat_pharm(self, source, engineid):
+        url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '审方端发送理由')
+        param = {
+            "zoneId": 1,
+            "category": source,
+            "attachKey": engineid,
+            "message": "这是药师消息哦",
+            "userRole": "药师"
+        }
+        self.post_json(url, param)
+
+    def query_chat(self, source, zoneid, engineid):
+        url = (self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审查询记录')) % (source, zoneid, engineid)
         print(url)
         return self.get(url)
 
 
-
-
 if __name__ == '__main__':
     t = Template()
-    print(t.get_ymd(-1,-6))
-    # ids = [99098]
-    # t.audit_multi(1, *ids)
-    t.query_chat(1,1,1)
+    # t.send_delete_1('doctor', 'opt_del_1', **t.change_data)
