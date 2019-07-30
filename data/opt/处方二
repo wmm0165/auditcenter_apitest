@@ -63,7 +63,7 @@
         <recipe_item_id><![CDATA[r21_{{ts}}]]></recipe_item_id>
         <recipe_id><![CDATA[r2_{{ts}}]]></recipe_id>
         <drug_purpose><![CDATA[科室领药]]></drug_purpose>
-        <group_no><![CDATA[{{gp}}]]></group_no>
+        <group_no><![CDATA[{{cgp}}]]></group_no>
         <drug_id><![CDATA[00002301]]></drug_id>
         <drug_name><![CDATA[盐酸氟桂利嗪胶囊(西比灵)]]></drug_name>
         <count_unit><![CDATA[6]]></count_unit>
@@ -100,7 +100,7 @@
         <recipe_item_id><![CDATA[r22_{{ts}}]]></recipe_item_id>
         <recipe_id><![CDATA[r2_{{ts}}]]></recipe_id>
         <drug_purpose><![CDATA[科室领药]]></drug_purpose>
-        <group_no><![CDATA[{{gp}}]]></group_no>
+        <group_no><![CDATA[{{cgp}}]]></group_no>
         <drug_id><![CDATA[00002401]]></drug_id>
         <drug_name><![CDATA[尼莫地平片(尼膜同)]]></drug_name>
         <count_unit><![CDATA[6]]></count_unit>
