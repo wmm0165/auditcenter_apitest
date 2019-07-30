@@ -8,7 +8,7 @@ def wait( func):
     # 可以使函数适配任意多的参数
     def wrapper(*args, **kw):
         time.sleep(5)
-        func(*args, **kw)
+        return func(*args, **kw)
     return wrapper
 
 

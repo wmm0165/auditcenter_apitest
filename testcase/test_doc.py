@@ -66,6 +66,16 @@ class TestDelete(unittest.TestCase):
         print(res)
         self.assertEqual(2,res['data'][0]['rejectStatus'])
 
+    def test_opt_07(self):
+        '''审核通过，医生修改处方'''
+        engineid = self.tem.get_opt_engineid('opt','处方一',1)
+        # 审核打回
+        self.tem.opt_audit(engineid,0)
+        self.tem.send_data('opt','修改处方一1',**self.tem.change_data)  # 只修改处方头
+        res = self.tem.get_opt_auditresult(engineid,1)
+        self.assertEqual(2,res['data'][0]['rejectStatus'])
 
+
+#
 if __name__ == '__main__':
     unittest.main()

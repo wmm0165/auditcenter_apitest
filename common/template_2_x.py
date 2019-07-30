@@ -13,7 +13,7 @@ from config.read_config import ReadConfig
 
 
 def wait(func):
-    # 可以使函数适配任意多的参数
+    # func(*args, **kw)可以使函数适配任意多的参数
     def wrapper(*args, **kw):
         time.sleep(3)
         return func(*args, **kw)
