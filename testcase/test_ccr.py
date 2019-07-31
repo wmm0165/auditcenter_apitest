@@ -542,7 +542,7 @@ class TestCcr(unittest.TestCase):
         # 待审医嘱作为合并医嘱被删除后,原任务重新跑引擎,ccr值在已审页面展示正确
         tem.send_data('ipt_delete', 'a1', **tem.change_data)  # 发草药嘱
         tem.send_data('ipt_delete', 'a2', **tem.change_data)  # 发药嘱
-        tem.send_delete('ipt_delete', 'a3', **tem.change_data)  # 删除草药嘱
+        tem.send_delete_1('ipt_delete', 'a3', **tem.change_data)  # 删除草药嘱
         # 待审页面获取药嘱的引擎id
         param = {
             "patientId": tem.change_data['{{ts}}']
@@ -565,7 +565,7 @@ class TestCcr(unittest.TestCase):
         # 待审医嘱作为合并医嘱被删除后,原任务重新跑引擎,ccr值在已审页面展示正确
         tem.send_data('ipt_delete', 'a2', **tem.change_data)  # 发药嘱
         tem.send_data('ipt_delete', 'a1', **tem.change_data)  # 发草药嘱
-        tem.send_delete('ipt_delete', 'a4', **tem.change_data)  # 删除药嘱
+        tem.send_delete_1('ipt_delete', 'a4', **tem.change_data)  # 删除药嘱
         # 待审页面获取药嘱的引擎id
         param = {
             "patientId": tem.change_data['{{ts}}']
@@ -587,9 +587,11 @@ class TestCcr(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    suite = unittest.TestSuite()  # 创建一个测试集合
+    # suite = unittest.TestSuite()  # 创建一个测试集合
+    unittest.main()
     # suite.addTest(TestCcr("test_opt_one"))
     # suite.addTest(TestCcr("test_opt_two"))
     # suite.addTest(TestCcr("test_opt_three"))
-    runner = unittest.TextTestRunner()
-    runner.run(suite)
+    # runner = unittest.TextTestRunner()
+    # runner.run(suite)
+
