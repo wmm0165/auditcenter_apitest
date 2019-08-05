@@ -104,7 +104,7 @@ class Template:
         time.sleep(1)  # 审方系统问题，每次发数据需要时间间隔
         # url = "http://10.1.1.89:9999/auditcenter/api/v1/auditcenter"
         xml_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', dir_name, xml_name)
-        send_data_url = "http://10.1.1.94:10000/api/v1/auditcenter"
+        send_data_url = self.conf.get('auditcenter', 'address') + "/api/v1/auditcenter"
         # send_data_url = "http://192.168.1.193:8080/api/v1/auditcenter"
         # send_data_url = "http://10.1.1.172:9999/auditcenter/api/v1/auditcenter"
         headers = {"Content-Type": "text/plain"}
@@ -192,6 +192,14 @@ class Template:
 
     @wait
     def get_opt_auditresult(self, engineid, type):
+        # time.sleep(4)
+        url = ''
+        if type == 1:
+            url = self.conf.get('auditcenter', 'address') + '/api/v1/opt/all/auditResultList/' + str(engineid)
+        return self.get(url)
+
+    @wait
+    def get_ipt_auditresult(self, engineid, type):
         # time.sleep(4)
         url = ''
         if type == 1:
@@ -302,6 +310,33 @@ class Template:
                 }]
             }
         self.post_json(url, param)
+
+    @wait
+    def get_ipt_orderlist(self, engineid, type):
+        if type == 0:
+            url = self.conf.get('auditcenter', 'address') + '/api/v1/ipt/orderList' + '?id=' + str(engineid)
+        else:
+            url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '已审住院获取药嘱信息') + '?id=' + str(engineid)
+        return self.get(url)
+
+    @wait
+    def get_ipt_result(self, engineid, gp):
+        """待审页面查看合并任务的审核结果"""
+        res = self.get_ipt_orderlist(engineid, 0)
+        medicalIds = res['data'][gp][0]['id']
+        medicalHisIds = res['data'][gp][0]['orderId']
+        url = self.conf.get('auditcenter', 'address') + "/api/v1/ipt/engineMsgList"
+        param = {
+            "engineId": engineid,
+            "zoneId": 1,
+            "groupNo": gp,
+            "medicalIds": [medicalIds],
+            "medicalHisIds": [medicalHisIds],
+            "herbMedicalIds": [],
+            "herbMedicalHisIds": [],
+            "auditWay": "2"
+        }
+        return self.post_json(url, param)
 
     def chat_ipt_doc(self, engineid):
         url = self.conf.get('auditcenter', 'address') + self.conf.get('api', '客户端发送理由')
